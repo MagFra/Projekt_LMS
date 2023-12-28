@@ -16,7 +16,7 @@ namespace Lexicon_LMS.Shared.Domain
 
 
         //Navigation Properties
-        public Activity Activity { get; set; } = new Activity();
+        public Activities Activity { get; set; } = new Activities();
         public ApplicationUser Student { get; set; } = new ApplicationUser();
     }
 }

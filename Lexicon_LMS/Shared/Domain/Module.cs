@@ -10,7 +10,7 @@ public class Module
     public DateTime StartDate { get; set; }
     public int? LengthOfDays { get; set; }
 
-    public ICollection<Activity> Activities { get; set; } = new List<Activity>();
+    public ICollection<Activities> Activities { get; set; } = new List<Activities>();
 
     public Course Course { get; set; } = new Course();
 

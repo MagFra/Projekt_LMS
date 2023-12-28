@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lexicon_LMS.Shared.Domain
 {
-    public class Activity
+    public class Activities
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;

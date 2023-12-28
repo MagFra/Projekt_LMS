@@ -9,7 +9,7 @@ namespace Lexicon_LMS.Server.Data
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
-        public DbSet<Activity> activity => Set<Activity>();
+        public DbSet<Activities> activity => Set<Activities>();
         public DbSet<ApplicationUser> applicationUser => Set<ApplicationUser>();
         public DbSet<Assignments> assignments => Set<Assignments>();
         public DbSet<Course> course => Set<Course>();
