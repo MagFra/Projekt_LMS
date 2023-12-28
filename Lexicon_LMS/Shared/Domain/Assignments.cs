@@ -14,5 +14,9 @@ namespace Lexicon_LMS.Shared.Domain
         public int ActivityId { get; set; }
         public string ApplicationUserId { get; set; } = default!;
 
+
+        //Navigation Properties
+        public Activity Activity { get; set; } = new Activity();
+        public ApplicationUser Student { get; set; } = new ApplicationUser();
     }
 }
