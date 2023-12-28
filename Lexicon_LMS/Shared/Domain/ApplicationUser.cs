@@ -8,5 +8,9 @@ namespace Lexicon_LMS.Shared.Domain
         public string LastName { get; set; } = string.Empty;
         public int? CourseId { get; set; } = null!;
 
+        //Relationer
+        public Course Course { get; set; } = new Course();
+        public ICollection<Assignments> Assignments { get; set; } = new List<Assignments>();
+
     }
 }
