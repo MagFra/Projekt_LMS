@@ -20,5 +20,12 @@ namespace Lexicon_LMS.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Assignments>().HasKey(a => new { a.ActivityId, a.ApplicationUserId });
+        }
+
     }
 }
