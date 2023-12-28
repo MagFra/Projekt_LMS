@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Collections\" />
-    <Folder Include="Endpoints\" />
   </ItemGroup>
 
 </Project>
