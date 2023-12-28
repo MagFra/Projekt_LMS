@@ -1,6 +1,6 @@
 using System;
 
-namespace Shared;
+namespace Lexicon_LMS.Shared.Domain;
 
 public class Module
 {
