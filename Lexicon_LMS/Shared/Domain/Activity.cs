@@ -14,9 +14,12 @@ namespace Lexicon_LMS.Shared.Domain
         public DateTime StartDate { get; set; }
         public int LenthDays { get; set; }
 
+
         // FK
         public int ModuleId { get; set; }
 
+
+        // "Relationer"
         public Module Module { get; set; } = new Module();
         public ICollection<Assignments> AssignmentsLista { get; set; } = new List<Assignments>();
     }
