@@ -1,5 +1,5 @@
 ﻿using Duende.IdentityServer.EntityFramework.Options;
-using Lexicon_LMS.Server.Models;
+using Lexicon_LMS.Shared.Domain;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
