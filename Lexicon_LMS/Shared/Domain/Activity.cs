@@ -15,11 +15,11 @@ namespace Lexicon_LMS.Shared.Domain
         public int LenthDays { get; set; }
 
 
-        // FK
+        // Foreign key
         public int ModuleId { get; set; }
 
 
-        // "Relationer"
+        // Navigation property
         public Module Module { get; set; } = new Module();
         public ICollection<Assignments> AssignmentsLista { get; set; } = new List<Assignments>();
     }
