@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SupportedPlatform Include="browser" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.13" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
+    <SupportedPlatform Include="browser" />
   </ItemGroup>
 </Project>
