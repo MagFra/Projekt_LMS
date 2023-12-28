@@ -14,5 +14,6 @@ namespace Lexicon_LMS.Shared.Domain
         public DateTime StartDate { get; set; }
         public int LengthDays { get; set; }
         public DateTime LastApplicationDay { get; set; }
+
     }
 }
