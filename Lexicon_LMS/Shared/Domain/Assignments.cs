@@ -12,7 +12,7 @@ namespace Lexicon_LMS.Shared.Domain
 
         //Foreign Keys
         public int ActivityId { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
 
     }
 }
