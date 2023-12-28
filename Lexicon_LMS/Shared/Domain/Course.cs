@@ -9,11 +9,10 @@ public class Course
     public int LengthDays { get; set; }
     public DateTime LastApplicationDay { get; set; }
 
-    // Foreign key
-    public int ModuleId { get; set; }
-
-    // Navigation property
-    public ICollection<Module> Modules { get; set; } = new List<Module>();
+    // Navigation properties
+    public ICollection<Module> ModuleList { get; set; } = new List<Module>();
+   
+    public ICollection<ApplicationUser> StudentList { get; set; } = new List<ApplicationUser>();
     
 }
 
