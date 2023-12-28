@@ -16,5 +16,8 @@ namespace Lexicon_LMS.Shared.Domain
 
         // FK
         public int ModuleId { get; set; }
+
+        public Module Module { get; set; } = new Module();
+        public ICollection<Assignments> AssignmentsLista { get; set; } = new List<Assignments>();
     }
 }
