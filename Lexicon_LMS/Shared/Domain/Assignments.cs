@@ -8,7 +8,7 @@ namespace Lexicon_LMS.Shared.Domain
 {
     public class Assignments
     {
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         //Foreign Keys
         public int ActivityId { get; set; }
