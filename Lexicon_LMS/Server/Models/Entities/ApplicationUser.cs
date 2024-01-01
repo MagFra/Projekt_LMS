@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Server.Models.Entities
 {
     public class ApplicationUser : IdentityUser
     {

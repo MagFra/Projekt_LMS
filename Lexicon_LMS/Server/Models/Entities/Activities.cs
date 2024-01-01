@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Server.Models.Entities
 {
     public class Activities
     {
