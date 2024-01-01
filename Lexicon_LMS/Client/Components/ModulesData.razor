@@ -1,0 +1,27 @@
+﻿<h3>Module</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Course Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Starting date</th>
+            <th scope="col">Length of days</th>
+            <th scope="col">Activities</th>
+            <th scope="col">Course</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var module in Modules)
+        {
+            <tr>
+                <td scope="row">@module.Id</td>
+                <td scope="row">@module.Course</td>
+                <td scope="row">@module.Name</td>
+                <td scope="row">@module.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
