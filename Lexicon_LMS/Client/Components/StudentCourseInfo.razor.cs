@@ -7,15 +7,18 @@ namespace Lexicon_LMS.Client.Components
     {
         public Course CourseInfo { get; set; } = new Course();
 
-        public List<Module> ModuleInfo { get; set; } = new List<Module>();
-
-        protected override void OnInitialized()
+        public List<Module> GetModules()
         {
-            base.OnInitialized();
-            ModuleInfo.Add(new Module() { Id = 2, Name="Sjöar", Description="Beskrivning", StartDate= new DateTime(), LengthOfDays=2 });
-
-
+            //return _db
         }
+
+        //protected override void OnInitialized()
+        //{
+        //    base.OnInitialized();
+        //    ModuleInfo.Add(new Module() { Id = 2, Name="Sjöar", Description="Beskrivning", StartDate= new DateTime(), LengthOfDays=2 });
+
+
+        //}
 
     }
 }
