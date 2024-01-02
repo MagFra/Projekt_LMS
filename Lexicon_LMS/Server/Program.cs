@@ -1,5 +1,6 @@
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
+using Lexicon_LMS.Server.Models.Profiles;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+
+builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
