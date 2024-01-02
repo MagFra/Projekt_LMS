@@ -1,0 +1,32 @@
+﻿@page "/addmod"
+<h3>Add Module</h3>
+
+@* Test for add module *@
+
+<form>
+    <label for="name">Course:</label>
+    <input type="text" id="name" @bind="userName" />
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" @bind="userAge" />
+
+    <button type="button" @onclick="SubmitForm">Submit</button>
+</form>
+
+<p>Course: @userName</p>
+<p>Your Age: @userAge</p>
+
+@code {
+    // Define properties to store user input
+    private string userName;
+    private int userAge;
+
+    // Event handler for form submission
+    private void SubmitForm()
+    {
+        // Process the form data here
+        // For simplicity, just displaying the entered data in this example
+        // In a real application, you would likely perform data validation and submit the data to a server.
+        Console.WriteLine($"Name: {userName}, Age: {userAge}");
+    }
+}
