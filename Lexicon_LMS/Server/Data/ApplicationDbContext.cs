@@ -1,5 +1,5 @@
 ﻿using Duende.IdentityServer.EntityFramework.Options;
-using Lexicon_LMS.Shared.Domain;
+using Lexicon_LMS.Server.Models.Entities;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -12,7 +12,7 @@ namespace Lexicon_LMS.Server.Data
         public DbSet<Activities> activity => Set<Activities>();
         public DbSet<ApplicationUser> applicationUser => Set<ApplicationUser>();
         public DbSet<Assignments> assignments => Set<Assignments>();
-        public DbSet<Course> course => Set<Course>();
+        public DbSet<Courses> courses => Set<Courses>();
         public DbSet<Module> module => Set<Module>();
 
         public ApplicationDbContext(

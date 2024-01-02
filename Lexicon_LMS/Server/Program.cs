@@ -1,6 +1,11 @@
 using Lexicon_LMS.Server.Data;
+using Lexicon_LMS.Server.Extensions;
 using Lexicon_LMS.Shared.Domain;
+
+using Lexicon_LMS.Server.Models.Entities;
+using Lexicon_LMS.Server.Models.Profiles;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,10 +18,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+
+builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
@@ -31,6 +39,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseWebAssemblyDebugging();
+    await app.SeedDataAsync();
 }
 else
 {

@@ -1,5 +1,5 @@
 
-namespace Lexicon_LMS.Shared.Domain;
+namespace Lexicon_LMS.Server.Models.Entities;
 
 public class Module
 {
@@ -12,7 +12,7 @@ public class Module
 
     public ICollection<Activities> Activities { get; set; } = new List<Activities>();
 
-    public Course Course { get; set; } = new Course();
+    public Courses Course { get; set; } = new Courses();
 
 
 }
