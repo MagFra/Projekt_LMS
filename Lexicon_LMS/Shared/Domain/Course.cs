@@ -5,7 +5,7 @@ public class Course
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-    public DateTime StartDate { get; set; }
+    public DateTimeOffset StartDate { get; set; } // change from DateTime to DateTimeOffset, it can handle timezone information without issues by Xiahui.
     public int LengthDays { get; set; }
     public DateTime LastApplicationDay { get; set; }
 
