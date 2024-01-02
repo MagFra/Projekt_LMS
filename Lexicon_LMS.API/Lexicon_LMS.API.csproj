@@ -15,4 +15,8 @@
     <Folder Include="Collections\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Lexicon_LMS\Server\Lexicon_LMS.Server.csproj" />
+  </ItemGroup>
+
 </Project>
