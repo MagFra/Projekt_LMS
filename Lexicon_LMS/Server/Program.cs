@@ -1,19 +1,20 @@
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Extensions;
-
+using Lexicon_LMS.Shared.Domain;
 using Lexicon_LMS.Server.Models.Entities;
 using Lexicon_LMS.Server.Models.Profiles;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-// builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//     options.UseSqlServer(connectionString));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
