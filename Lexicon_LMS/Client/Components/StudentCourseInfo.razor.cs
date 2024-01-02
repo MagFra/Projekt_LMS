@@ -5,12 +5,12 @@ namespace Lexicon_LMS.Client.Components
 {
     public partial class StudentCourseInfo
     {
-        public Course CourseInfo { get; set; } = new Course();
+        public CourseDTO CourseInfo { get; set; } = new CourseDTO();
 
-        public List<Module> GetModules()
-        {
-            //return _db
-        }
+        //public List<ModuleDTO> GetModules()
+        //{
+        //    //return _db
+        //}
 
         //protected override void OnInitialized()
         //{
