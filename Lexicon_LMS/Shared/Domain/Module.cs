@@ -1,4 +1,3 @@
-
 namespace Lexicon_LMS.Shared.Domain;
 
 public class Module

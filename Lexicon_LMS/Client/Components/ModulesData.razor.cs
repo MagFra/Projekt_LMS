@@ -9,9 +9,9 @@ namespace Lexicon_LMS.Client.Components
 
         [Parameter]
         public string ExtraCaption { get; set; } = string.Empty;
-        //protected override void OnInitialized()
-        //{
-        //    base.OnInitialized();
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
             //MachineList.Add(new Machine() 
             //{ MachineID = Guid.NewGuid(), 
             //  Location = Location.Skövde,
@@ -29,7 +29,7 @@ namespace Lexicon_LMS.Client.Components
             //    Status = Status.offline
             //});
 
-            //Föreläsning 1 dag 1: 58:24
         }
     }
+}
 
