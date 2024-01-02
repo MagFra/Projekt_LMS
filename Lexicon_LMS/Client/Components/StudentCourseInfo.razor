@@ -1,5 +1,31 @@
-﻿<h3>StudentCourseInfo</h3>
+﻿<h4>Course Information</h4>
 
 @code {
 
 }
+
+Course: @CourseInfo.Name
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Module</th>
+			<th>Description</th>
+			<th>Start Date</th>
+			<th>Duration</th>
+		</tr>
+	</thead>
+
+<tbody>
+@foreach(var module in ModuleInfo)
+{
+	<tr>			
+		<th>@module.Name</th>
+		<th>@module.Description</th>
+		<th>@module.StartDate</th>
+		<th>@module.LengthOfDays</th>
+		</tr>
+}
+</tbody>
+</table>
+Hej
