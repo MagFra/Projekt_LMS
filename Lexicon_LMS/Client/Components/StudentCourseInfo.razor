@@ -17,7 +17,7 @@ Course: @CourseInfo.Name
 	</thead>
 
 <tbody>
-@foreach(var module in ModuleInfo)
+@foreach(var module in GetModule)
 {
 	<tr>			
 		<th>@module.Name</th>
