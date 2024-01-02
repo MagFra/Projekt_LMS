@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Lexicon_LMS.Shared.Domain
 {
-    public class Activities
+    public class ActivityDTO
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
@@ -20,7 +21,7 @@ namespace Lexicon_LMS.Shared.Domain
 
 
         // Navigation property
-        public Module Module { get; set; } = new Module();
-        public ICollection<Assignments> AssignmentsLista { get; set; } = new List<Assignments>();
+        public ModuleDTO Module { get; set; } = new ModuleDTO();
+        public ICollection<AssignmentDTO> ListOfAssignments { get; set; } = new List<AssignmentDTO>();
     }
 }
