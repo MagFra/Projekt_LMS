@@ -9,7 +9,7 @@ namespace Lexicon_LMS.Server.Models.Entities
         public int? CourseId { get; set; } = null!;
 
         //Relationer
-        public Course Course { get; set; } = new Course();
+        public Courses Course { get; set; } = new Courses();
         public ICollection<Assignments> Assignments { get; set; } = new List<Assignments>();
 
     }

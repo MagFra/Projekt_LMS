@@ -23,24 +23,24 @@ namespace Lexicon_LMS.Server.Controllers
 
         // GET: api/Courses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Course>>> Getcourse()
+        public async Task<ActionResult<IEnumerable<Courses>>> Getcourse()
         {
-          if (_context.course == null)
+          if (_context.courses == null)
           {
               return NotFound();
           }
-            return await _context.course.ToListAsync();
+            return await _context.courses.ToListAsync();
         }
 
         // GET: api/Courses/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Course>> GetCourse(int id)
+        public async Task<ActionResult<Courses>> GetCourse(int id)
         {
-          if (_context.course == null)
+          if (_context.courses == null)
           {
               return NotFound();
           }
-            var course = await _context.course.FindAsync(id);
+            var course = await _context.courses.FindAsync(id);
 
             if (course == null)
             {
@@ -53,7 +53,7 @@ namespace Lexicon_LMS.Server.Controllers
         // PUT: api/Courses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCourse(int id, Course course)
+        public async Task<IActionResult> PutCourse(int id, Courses course)
         {
             if (id != course.Id)
             {
@@ -84,13 +84,13 @@ namespace Lexicon_LMS.Server.Controllers
         // POST: api/Courses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Course>> PostCourse(Course course)
+        public async Task<ActionResult<Courses>> PostCourse(Courses course)
         {
-          if (_context.course == null)
+          if (_context.courses == null)
           {
               return Problem("Entity set 'ApplicationDbContext.course'  is null.");
           }
-            _context.course.Add(course);
+            _context.courses.Add(course);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCourse", new { id = course.Id }, course);
@@ -100,17 +100,17 @@ namespace Lexicon_LMS.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
-            if (_context.course == null)
+            if (_context.courses == null)
             {
                 return NotFound();
             }
-            var course = await _context.course.FindAsync(id);
+            var course = await _context.courses.FindAsync(id);
             if (course == null)
             {
                 return NotFound();
             }
 
-            _context.course.Remove(course);
+            _context.courses.Remove(course);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -118,7 +118,7 @@ namespace Lexicon_LMS.Server.Controllers
 
         private bool CourseExists(int id)
         {
-            return (_context.course?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.courses?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Lexicon_LMS.Server.Data
         public DbSet<Activities> activity => Set<Activities>();
         public DbSet<ApplicationUser> applicationUser => Set<ApplicationUser>();
         public DbSet<Assignments> assignments => Set<Assignments>();
-        public DbSet<Course> course => Set<Course>();
+        public DbSet<Courses> courses => Set<Courses>();
         public DbSet<Module> module => Set<Module>();
 
         public ApplicationDbContext(

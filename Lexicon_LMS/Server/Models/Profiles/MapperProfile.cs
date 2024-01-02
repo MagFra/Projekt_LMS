@@ -18,14 +18,14 @@ namespace Lexicon_LMS.Server.Models.Profiles
             CreateMap<IEnumerable<Assignments>, AssignmentsListDTO>()
                 .ForMember(dest => dest.ListOfAssignments, from => from.MapFrom(a => a.ToList()));
 
-            CreateMap<Course, CourseDTO>().ReverseMap();
+            CreateMap<Courses, CourseDTO>().ReverseMap();
 
-            CreateMap<IEnumerable<CourseDTO>, CourseListDTO>()
+            CreateMap<IEnumerable<Courses>, CourseListDTO>()
                 .ForMember(dest => dest.ListOfCourses, from => from.MapFrom(c => c.ToList()));
 
             CreateMap<Module, ModuleDTO>().ReverseMap();
 
-            CreateMap<IEnumerable<ModuleDTO>, ModuleListDTO>()
+            CreateMap<IEnumerable<Module>, ModuleListDTO>()
                 .ForMember(dest => dest.ListOfModules, from => from.MapFrom(m => m.ToList()));
 
             CreateMap<ApplicationUser, UserDTO>().ReverseMap();
