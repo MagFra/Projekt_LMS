@@ -12,23 +12,6 @@ namespace Lexicon_LMS.Client.Components
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            //MachineList.Add(new Machine() 
-            //{ MachineID = Guid.NewGuid(), 
-            //  Location = Location.Skövde,
-            //  Date = new DateTime(),
-            //  MachineType = "MachineType1", 
-            //  Status = Status.online 
-            //});
-
-            //MachineList.Add(new Machine()
-            //{
-            //    MachineID = Guid.NewGuid(),
-            //    Location = Location.Göteborg,
-            //    Date = new DateTime(),
-            //    MachineType = "MachineType2",
-            //    Status = Status.offline
-            //});
-
         }
     }
 }

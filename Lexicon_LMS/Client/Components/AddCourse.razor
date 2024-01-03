@@ -1,27 +1,26 @@
-﻿@page "/addmodule"
-<h3>Add Module</h3>
+﻿@page "/addcourse"
+<h3>Add Course</h3>
 
-@* Test for add module *@
+@* Test for add course *@
 
 <form>
-    <label for="name">Module:</label>
-    <input type="text" id="name" @bind="moduleName" />
+    <label for="name">Add new course: </label>
+    <input type="text" id="name" @bind="courseName" />
 
     <button type="button" @onclick="SubmitForm">Submit</button>
 </form>
 
-<p>Course: @moduleName</p>
+<p>Course: @courseName</p>
 
 @code {
     // Define properties to store user input
-    private string moduleName;
-
+    private string courseName;
     // Event handler for form submission
     private void SubmitForm()
     {
         // Process the form data here
         // For simplicity, just displaying the entered data in this example
         // Submit the data to a server.
-        Console.WriteLine($"Name: {moduleName}");
+        Console.WriteLine($"Name: {courseName}");
     }
 }
