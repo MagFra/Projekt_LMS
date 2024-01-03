@@ -1,0 +1,25 @@
+﻿<h3>Courses</h3>
+@ExtraCaption
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Course</th>
+            <th scope="col">Info</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Course)
+        {
+            <tr>
+                <td scope="row">@course.Name</td>
+                <td><button @onclick="() => ViewCourse(course.Id)">Info</button></td>
+                <td><button @onclick="() => EditCourse(course.Id)">Edit</button></td>
+                <td><button @onclick="() => DeleteCourse(course.Id)">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
