@@ -6,14 +6,15 @@ namespace Lexicon_LMS.Client.Components
 {
     public partial class StudentCourseInfo
     {
-        //public CourseDTO CourseInfo { get; set; } = new CourseDTO();
+        //public CourseDTO CourseInfo { get; set; } //= new CourseDTO();
 
+        public ModuleDTO Module { get; set; }
 
+        //public async List<ModuleDTO> ModuleDTOs()
+        //{
+        //    return await _context
+        //}
 
-        public async List<ModuleDTO> ModuleDTOs()
-        {
-            return await 
-        }
 
     }
 }

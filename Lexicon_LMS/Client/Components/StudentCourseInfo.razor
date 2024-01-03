@@ -4,7 +4,7 @@
 
 }
 
-Course: @CourseInfo.Name
+@* Course: @CourseInfo *@
 
 <table class="table">
 	<thead>
@@ -17,15 +17,15 @@ Course: @CourseInfo.Name
 	</thead>
 
 <tbody>
-@foreach(var module in GetModule)
+@foreach(var module in Module)
 {
 	<tr>			
-		<th>@module.Name</th>
+		<th>@module. .Name</th>
 		<th>@module.Description</th>
 		<th>@module.StartDate</th>
 		<th>@module.LengthOfDays</th>
 		</tr>
 }
 </tbody>
+
 </table>
-Hej
