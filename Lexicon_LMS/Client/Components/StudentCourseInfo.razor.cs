@@ -12,7 +12,7 @@ namespace Lexicon_LMS.Client.Components
 
         public async List<ModuleDTO> ModuleDTOs()
         {
-            return await //databasen...
+            return await 
         }
 
     }
