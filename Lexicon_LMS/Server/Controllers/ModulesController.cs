@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
+using Lexicon_LMS.Server.Services;
+using Lexicon_LMS.Shared.Domain;
+using Lexicon_LMS.Server.Models.Profiles;
+using AutoMapper;
 
 namespace Lexicon_LMS.Server.Controllers
 {
@@ -15,10 +19,14 @@ namespace Lexicon_LMS.Server.Controllers
     public class ModulesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IModuleService _moduleService;
+        //private readonly IMapper _mapper;
 
-        public ModulesController(ApplicationDbContext context)
+        public ModulesController(ApplicationDbContext context, IModuleService moduleService)//, IMapper mapper)
         {
             _context = context;
+            _moduleService = moduleService;
+            //_mapper = mapper;
         }
 
         // GET: api/Modules
@@ -83,18 +91,21 @@ namespace Lexicon_LMS.Server.Controllers
 
         // POST: api/Modules
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Module>> PostModule(Module @module)
-        {
-          if (_context.module == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.module'  is null.");
-          }
-            _context.module.Add(@module);
-            await _context.SaveChangesAsync();
+        //[HttpPost]
+        //public async Task<ActionResult<Module>> PostModule(ModuleForCreationDTO @module)
+        //{
+        //  if (_context.module == null)
+        //  {
+        //      return Problem("Entity set 'ApplicationDbContext.module'  is null.");
+        //  }
+        //    var result = _mapper.Map<Module>(@module);
+        //    //var result = await _moduleService.AddModuleAsync(@module);
+        //    _context.module.Add(result);
+        //    await _context.SaveChangesAsync();
+        //    //var result2 = _mapper.Map<ModuleDTO>(result);
 
-            return CreatedAtAction("GetModule", new { id = @module.Id }, @module);
-        }
+        //    return CreatedAtAction("GetModule", new { id = result.Id }, result);
+        //}
 
         // DELETE: api/Modules/5
         [HttpDelete("{id}")]

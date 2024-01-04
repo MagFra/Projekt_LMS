@@ -8,20 +8,20 @@ namespace Lexicon_LMS.Server.Models.Profiles
         public MapperProfile()
         {
 
-            CreateMap<Activities, ActivityDTO>().ReverseMap();
+            //CreateMap<Activities, ActivityDTO>();
 
-            CreateMap<IEnumerable<Activities>, ActivitiesListDTO>()
-                .ForMember(dest => dest.ListOfActivities, from => from.MapFrom(ac => ac.ToList()));
+            //CreateMap<IEnumerable<Activities>, ActivitiesListDTO>()
+            //    .ForMember(dest => dest.ListOfActivities, from => from.MapFrom(ac => ac.ToList()));
 
-            CreateMap<Assignments, AssignmentDTO>().ReverseMap();
+            //CreateMap<Assignments, AssignmentDTO>();
 
-            CreateMap<IEnumerable<Assignments>, AssignmentsListDTO>()
-                .ForMember(dest => dest.ListOfAssignments, from => from.MapFrom(a => a.ToList()));
+            //CreateMap<IEnumerable<Assignments>, AssignmentsListDTO>()
+            //    .ForMember(dest => dest.ListOfAssignments, from => from.MapFrom(a => a.ToList()));
 
-            CreateMap<Courses, CourseDTO>().ReverseMap();
+            //CreateMap<Courses, CourseDTO>();
 
-            CreateMap<IEnumerable<Courses>, CourseListDTO>()
-                .ForMember(dest => dest.ListOfCourses, from => from.MapFrom(c => c.ToList()));
+            //CreateMap<IEnumerable<Courses>, CourseListDTO>()
+            //    .ForMember(dest => dest.ListOfCourses, from => from.MapFrom(c => c.ToList()));
 
             CreateMap<Module, ModuleDTO>();
 
@@ -32,10 +32,10 @@ namespace Lexicon_LMS.Server.Models.Profiles
             CreateMap<IEnumerable<Module>, ModuleListDTO>()
                 .ForMember(dest => dest.ListOfModules, from => from.MapFrom(m => m.ToList()));
 
-            CreateMap<ApplicationUser, UserDTO>().ReverseMap();
+            //CreateMap<ApplicationUser, UserDTO>();
 
-            CreateMap<IEnumerable<ApplicationUser>, UserListDTO>()
-                .ForMember(dest => dest.ListOfUsers, from => from.MapFrom(u => u.ToList()));
+            //CreateMap<IEnumerable<ApplicationUser>, UserListDTO>()
+            //    .ForMember(dest => dest.ListOfUsers, from => from.MapFrom(u => u.ToList()));
         }
     }
 }

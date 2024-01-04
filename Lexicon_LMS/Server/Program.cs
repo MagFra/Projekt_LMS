@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Lexicon_LMS.Server.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,7 @@ builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile));
+builder.Services.AddScoped<IModuleService, ModuleService>();
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
@@ -33,6 +35,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
+
 
 var app = builder.Build();
 

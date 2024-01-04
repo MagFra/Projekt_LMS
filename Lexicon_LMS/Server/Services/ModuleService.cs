@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lexicon_LMS.Server.Services
 {
-    public class ModuleService
+    public class ModuleService : IModuleService
     {
         private readonly ApplicationDbContext _db;
         private readonly IMapper _mapper;
@@ -29,17 +29,41 @@ namespace Lexicon_LMS.Server.Services
             return _mapper.Map<ModuleDTO>(module);
         }
 
-        public async void AddModuleAsync(ModuleForCreationDTO dto)
+        public async Task<ModuleDTO> AddModuleAsync(ModuleForCreationDTO dto)
         {
             var module = _mapper.Map<Module>(dto);
             await _db.module.AddAsync(module);
             await _db.SaveChangesAsync();
+            return _mapper.Map<ModuleDTO>(module);
         }
 
         public async void UpdateModuleAssync(ModuleForUpdateDTO dto)
-        {
+        {   
+            // Testa att dto innehåller "valid" data!
+
             var module = _mapper.Map<Module>(dto);
-            var dest = await _db.module.FirstOrDefaultAsync(m => m.Id == module.Id);
+            if (module != null)
+            {
+                var dest = await _db.module.FirstOrDefaultAsync(m => m.Id == module.Id);
+                if (dest != null)
+                {
+                    dest = module;
+                    await _db.SaveChangesAsync();   // Bör omges av try/catch(Exception)!
+
+                }   // Bör förses med else{} och varning att modulen som försöker uppdateras inte kan hittas!
+
+            }   // Bör förses med else{} och varning att inget skickades!            
+        }
+
+
+        public async void DeleteModuleAssync(int moduleId)
+        {
+            var module = await _db.module.FirstOrDefaultAsync(m => m.Id == moduleId);
+            if(module != null)
+            {
+                _db.module.Remove(module);
+                await _db.SaveChangesAsync();
+            }
         }
     }
 }
