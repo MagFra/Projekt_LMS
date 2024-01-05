@@ -1,32 +1,20 @@
-﻿using Lexicon_LMS.Shared.Domain;
+﻿using Lexicon_LMS.Client.Components;
+using Lexicon_LMS.Client.Pages;
+using Lexicon_LMS.Shared.Domain;
 using Microsoft.AspNetCore.Components;
 
-namespace ManagementCentral.Client.Services
+namespace Lexicon_LMS.Client.Services
 {
-    public class ICourseService
-    {
-        public static List<CourseDTO> Courses { get; set; } = new List<CourseDTO>();
-        public ICourseService() 
+        public interface ICourseService
         {
-            //Courses.Add(new Device() { DeviceId = 1, Location = Location.Sweden, Date = DateTime.Now, DeviceType = "Sensor", Status = Status.online });
-            //Courses.Add(new Device() { DeviceId = 2, Location = Location.England, Date = DateTime.Now, DeviceType = "Machine", Status = Status.offline });
-            //Courses.Add(new Device() { DeviceId = 3, Location = Location.Sweden, Date = DateTime.Now, DeviceType = "Sensor", Status = Status.online });
-        }
+            List<CourseDTO> GetCourses();
 
-        private void ViewCourse(int courseId)
-        {
-            NavigationManager.NavigateTo($"/view/{courseId}");
-        }
+            CourseDTO GetCourse(int Id);
 
-        private void EditCourse(int courseId)
-        {
-            NavigationManager.NavigateTo($"/edit/{courseId}");
-        }
+            //void DeleteCourse(int Id);
 
-        private void DeleteCourse(int courseId)
-        {
-            CourseService.DeleteCourse(courseId);
-            StateHasChanged(); // Update the UI
+            //void UpdateCourse(CourseDTO Course);
+
+            void AddCourse(CourseDTO Course);
         }
-    }
 }
