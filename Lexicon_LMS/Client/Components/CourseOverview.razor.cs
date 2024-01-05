@@ -38,26 +38,3 @@ namespace Lexicon_LMS.Client.Components
     }
 }
 
-//using Lexicon_LMS.Shared.Models.Entities;
-//using System.Net.Http.Json;
-//using Microsoft.AspNetCore.Components;
-
-//@inject CourseDataService CourseDataService
-
-//namespace Lexicon_LMS.Client.Components;
-//public partial class CourseOverview
-//{
-//             [Inject]
-//        private HttpClient? Http { get; set; }
-//    protected override async Task OnInitializedAsync()
-//    {
-//        try
-//        {
-//            courses = await CourseDataService.GetCoursesAsync();
-//        }
-//        catch (Exception exception)
-//        {
-//            ErrorMessage = "An error occurred while loading the course data. Please try again later or contact support.";
-//        }
-//    }
-//}
