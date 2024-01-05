@@ -11,14 +11,14 @@
     font-size: 1.1rem;
 }
 
-.oi {
+.oi { /* Små ikoner */
     width: 2rem;
     font-size: 1.1rem;
     vertical-align: text-top;
     top: -2px;
 }
 
-.nav-item { /*Länkarna i vänster navbar.*/
+.nav-item { /* Länkarna i vänster navbar */
     font-size: 0.9rem;
     padding-bottom: 0.8rem;
 }
