@@ -8,7 +8,9 @@ public partial class AddCourse
     [Inject]
     private HttpClient? HttpClient { get; set; }
 
- 
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
     private string? ErrorMessage;
 
     private CourseDTO newCourse = new CourseDTO();
@@ -31,6 +33,9 @@ public partial class AddCourse
 
             // Convert response data to CourseDTO object
             newCourse = await response.Content.ReadFromJsonAsync<CourseDTO>();
+
+            // Redirect to CourseOverview page after successful creation
+            NavigationManager.NavigateTo("/listofcourses");
         }
         catch (Exception exception)
         {
