@@ -9,10 +9,14 @@
 
 <h1>Course overview</h1>
 
-@if (courses != null && courses.Any())
+@if (courses == null)
 {
-    <table class="table">
-        <thead>
+    <p>Loading....</p>
+}
+else if (courses.Any())
+{
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">Course Id</th>
                 <th scope="col">Name</th>
@@ -26,12 +30,12 @@
             @foreach (var course in courses)
             {
                 <tr>
-                    <td scope="row">@course?.Id</td>
-                    <td scope="row">@course?.Name</td>
-                    <td scope="row">@course?.Description</td>
-                    <td scope="row">@course?.StartDate.ToString("yyyy-MM-dd")</td>
-                    <td scope="row">@course?.LengthDays</td>
-                    <td scope="row">@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
+                    <td>@course?.Id</td>
+                    <td>@course?.Name</td>
+                    <td>@course?.Description</td>
+                    <td>@course?.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td>@course?.LengthDays</td>
+                    <td>@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
                 </tr>
             }
         </tbody>
