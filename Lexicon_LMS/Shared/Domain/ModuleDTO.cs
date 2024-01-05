@@ -17,7 +17,7 @@ namespace Lexicon_LMS.Shared.Domain
 
         public ICollection<ActivityDTO>? Activities { get; set; } = default!;
 
-        public CourseDTO Course { get; set; } = default!;
+        public CourseDTO Course { get; set; } = null!;
 
     }
 }

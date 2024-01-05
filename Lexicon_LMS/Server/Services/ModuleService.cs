@@ -16,11 +16,15 @@ namespace Lexicon_LMS.Server.Services
             _db = dbContext;
             _mapper = mapper;
         }
-        public async Task<ModuleListDTO> GetModuleListAsync(int? corseId = null)
+        public async Task<IEnumerable<ModuleDTO>> GetModuleListAsync(int? corseId = null)
         {
             var modules = (corseId is null) ? await _db.module.Include(m => m.Activities).ToListAsync()
                 : await _db.module.Where(m => m.CourseId == corseId).Include(m => m.Activities).ToListAsync();
-            return _mapper.Map<ModuleListDTO>(modules);
+
+            List<ModuleDTO> modulesDTO = new List<ModuleDTO>();
+            foreach (var module in modules) { modulesDTO.Add( _mapper.Map<ModuleDTO>(module)); }
+
+            return modulesDTO; //new ModuleListDTO { ListOfModules = modulesDTO};
         }
 
         public async Task<ModuleDTO> GetModuleAsync(int moduleId)

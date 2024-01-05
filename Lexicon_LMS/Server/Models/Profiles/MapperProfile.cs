@@ -8,17 +8,17 @@ namespace Lexicon_LMS.Server.Models.Profiles
         public MapperProfile()
         {
 
-            //CreateMap<Activities, ActivityDTO>();
+            CreateMap<Activities, ActivityDTO>();
 
             //CreateMap<IEnumerable<Activities>, ActivitiesListDTO>()
             //    .ForMember(dest => dest.ListOfActivities, from => from.MapFrom(ac => ac.ToList()));
 
-            //CreateMap<Assignments, AssignmentDTO>();
+            CreateMap<Assignments, AssignmentDTO>();
 
             //CreateMap<IEnumerable<Assignments>, AssignmentsListDTO>()
             //    .ForMember(dest => dest.ListOfAssignments, from => from.MapFrom(a => a.ToList()));
 
-            //CreateMap<Courses, CourseDTO>();
+            CreateMap<Courses, CourseDTO>();
 
             //CreateMap<IEnumerable<Courses>, CourseListDTO>()
             //    .ForMember(dest => dest.ListOfCourses, from => from.MapFrom(c => c.ToList()));
@@ -29,10 +29,10 @@ namespace Lexicon_LMS.Server.Models.Profiles
 
             CreateMap<ModuleForUpdateDTO, Module>();
 
-            CreateMap<IEnumerable<Module>, ModuleListDTO>()
-                .ForMember(dest => dest.ListOfModules, from => from.MapFrom(m => m.ToList()));
+            //CreateMap<IEnumerable<Module>, ModuleListDTO>()
+            //    .ForMember(dest => dest.ListOfModules, from => from.MapFrom(m => m.ToList()));
 
-            //CreateMap<ApplicationUser, UserDTO>();
+            CreateMap<ApplicationUser, UserDTO>();
 
             //CreateMap<IEnumerable<ApplicationUser>, UserListDTO>()
             //    .ForMember(dest => dest.ListOfUsers, from => from.MapFrom(u => u.ToList()));

@@ -11,6 +11,7 @@ using Lexicon_LMS.Server.Services;
 using Lexicon_LMS.Shared.Domain;
 using Lexicon_LMS.Server.Models.Profiles;
 using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Lexicon_LMS.Server.Controllers
 {
@@ -33,12 +34,26 @@ namespace Lexicon_LMS.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Module>>> Getmodule()
         {
-          if (_context.module == null)
-          {
-              return NotFound();
-          }
+            if (_context.module == null)
+            {
+                return NotFound();
+            }
             return await _context.module.ToListAsync();
         }
+
+
+        // GET: api/Modules
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<ModuleDTO>>> Getmodule()
+        //{
+        //    if (_context.module == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var test = await _moduleService.GetModuleListAsync();
+        //    return Ok(test);
+        //}
+
 
         // GET: api/Modules/5
         [HttpGet("{id}")]
@@ -89,23 +104,23 @@ namespace Lexicon_LMS.Server.Controllers
             return NoContent();
         }
 
-        // POST: api/Modules
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPost]
-        //public async Task<ActionResult<Module>> PostModule(ModuleForCreationDTO @module)
-        //{
-        //  if (_context.module == null)
-        //  {
-        //      return Problem("Entity set 'ApplicationDbContext.module'  is null.");
-        //  }
-        //    var result = _mapper.Map<Module>(@module);
-        //    //var result = await _moduleService.AddModuleAsync(@module);
-        //    _context.module.Add(result);
-        //    await _context.SaveChangesAsync();
-        //    //var result2 = _mapper.Map<ModuleDTO>(result);
+        //POST: api/Modules
+        //To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Module>> PostModule(ModuleForCreationDTO @module)
+        {
+            if (_context.module == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.module'  is null.");
+            }
+            //var result = _mapper.Map<Module>(@module);
+            var result = await _moduleService.AddModuleAsync(@module);
+            //_context.module.Add(result);
+            //await _context.SaveChangesAsync();
+            //var result2 = _mapper.Map<ModuleDTO>(result);
 
-        //    return CreatedAtAction("GetModule", new { id = result.Id }, result);
-        //}
+            return CreatedAtAction("GetModule", new { id = result.Id }, result);
+        }
 
         // DELETE: api/Modules/5
         [HttpDelete("{id}")]

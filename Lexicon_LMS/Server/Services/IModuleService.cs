@@ -7,7 +7,7 @@ namespace Lexicon_LMS.Server.Services
         Task<ModuleDTO> AddModuleAsync(ModuleForCreationDTO dto);
         void DeleteModuleAssync(int moduleId);
         Task<ModuleDTO> GetModuleAsync(int moduleId);
-        Task<ModuleListDTO> GetModuleListAsync(int? corseId = null);
+        Task<IEnumerable<ModuleDTO>> GetModuleListAsync(int? corseId = null);
         void UpdateModuleAssync(ModuleForUpdateDTO dto);
     }
 }
