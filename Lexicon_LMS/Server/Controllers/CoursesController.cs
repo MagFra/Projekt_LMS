@@ -25,7 +25,7 @@ namespace Lexicon_LMS.Server.Controllers
 
         // GET: api/Courses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Courses>>> Getcourse()
+        public async Task<ActionResult<List<Courses>>> Getcourse()
         {
           if (_context.courses == null)
           {

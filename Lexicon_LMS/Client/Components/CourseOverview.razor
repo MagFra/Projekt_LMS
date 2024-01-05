@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Lexicon_LMS.Shared.Models.Entities
+
+@attribute [Authorize]
+@* @inject HttpClient Http *@
+
+<PageTitle>Course Overview</PageTitle>
+
+<h1>Course overview</h1>
+
+@if (courses != null && courses.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Course Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Length (Days)</th>
+                <th scope="col">Last Application Day</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in courses)
+            {
+                <tr>
+                    <td scope="row">@course?.Id</td>
+                    <td scope="row">@course?.Name</td>
+                    <td scope="row">@course?.Description</td>
+                    <td scope="row">@course?.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td scope="row">@course?.LengthDays</td>
+                    <td scope="row">@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No courses available.</p>
+}
