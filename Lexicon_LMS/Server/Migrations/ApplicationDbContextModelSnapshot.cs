@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Lexicon_LMS.Server.Data.Migrations
+namespace Lexicon_LMS.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -163,7 +163,7 @@ namespace Lexicon_LMS.Server.Data.Migrations
                     b.ToTable("PersistedGrants", (string)null);
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Activities", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Activities", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -195,7 +195,7 @@ namespace Lexicon_LMS.Server.Data.Migrations
                     b.ToTable("activity");
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -273,7 +273,7 @@ namespace Lexicon_LMS.Server.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Assignments", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Assignments", b =>
                 {
                     b.Property<int>("ActivityId")
                         .HasColumnType("int");
@@ -292,7 +292,7 @@ namespace Lexicon_LMS.Server.Data.Migrations
                     b.ToTable("assignments");
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Courses", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Courses", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -320,9 +320,47 @@ namespace Lexicon_LMS.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("courses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 5,
+                            Description = "Learn the fundamentals of JavaScript programming.",
+                            LastApplicationDay = new DateTime(2024, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LengthDays = 30,
+                            Name = "JavaScript",
+                            StartDate = new DateTimeOffset(new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Explore the world of Python and its versatile applications.",
+                            LastApplicationDay = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LengthDays = 45,
+                            Name = "Python",
+                            StartDate = new DateTimeOffset(new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Master Java programming for building scalable applications.",
+                            LastApplicationDay = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LengthDays = 60,
+                            Name = "Java",
+                            StartDate = new DateTimeOffset(new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Dive into the Ruby programming language and its elegant syntax.",
+                            LastApplicationDay = new DateTime(2024, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LengthDays = 30,
+                            Name = "Ruby",
+                            StartDate = new DateTimeOffset(new DateTime(2024, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0))
+                        });
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Module", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Module", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -489,9 +527,9 @@ namespace Lexicon_LMS.Server.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Activities", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Activities", b =>
                 {
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.Module", "Module")
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.Module", "Module")
                         .WithMany("Activities")
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -500,24 +538,24 @@ namespace Lexicon_LMS.Server.Data.Migrations
                     b.Navigation("Module");
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.ApplicationUser", b =>
                 {
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.Courses", "Course")
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.Courses", "Course")
                         .WithMany("StudentList")
                         .HasForeignKey("CourseId");
 
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Assignments", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Assignments", b =>
                 {
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.Activities", "Activity")
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.Activities", "Activity")
                         .WithMany("AssignmentsLista")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.ApplicationUser", "Student")
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.ApplicationUser", "Student")
                         .WithMany("Assignments")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -528,9 +566,9 @@ namespace Lexicon_LMS.Server.Data.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Module", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Module", b =>
                 {
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.Courses", "Course")
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.Courses", "Course")
                         .WithMany("ModuleList")
                         .HasForeignKey("CourseId");
 
@@ -548,7 +586,7 @@ namespace Lexicon_LMS.Server.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.ApplicationUser", null)
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -557,7 +595,7 @@ namespace Lexicon_LMS.Server.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.ApplicationUser", null)
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -572,7 +610,7 @@ namespace Lexicon_LMS.Server.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.ApplicationUser", null)
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -581,31 +619,31 @@ namespace Lexicon_LMS.Server.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Lexicon_LMS.Server.Models.Entities.ApplicationUser", null)
+                    b.HasOne("Lexicon_LMS.Shared.Models.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Activities", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Activities", b =>
                 {
                     b.Navigation("AssignmentsLista");
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("Assignments");
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Courses", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Courses", b =>
                 {
                     b.Navigation("ModuleList");
 
                     b.Navigation("StudentList");
                 });
 
-            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Module", b =>
+            modelBuilder.Entity("Lexicon_LMS.Shared.Models.Entities.Module", b =>
                 {
                     b.Navigation("Activities");
                 });

@@ -1,5 +1,5 @@
 
-namespace Lexicon_LMS.Server.Models.Entities;
+namespace Lexicon_LMS.Shared.Models.Entities;
 
 public class Module
 {

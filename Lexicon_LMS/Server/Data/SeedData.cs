@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Lexicon_LMS.Shared.Domain;
-using Lexicon_LMS.Server.Models.Entities;
+using Lexicon_LMS.Shared.Models.Entities;
 
 namespace Lexicon_LMS.Server.Data
 {
