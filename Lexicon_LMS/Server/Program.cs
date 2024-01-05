@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseWebAssemblyDebugging();
     app.UseSwagger();
     app.UseSwaggerUI();
-    // await app.SeedDataAsync();
+    await app.SeedDataAsync();
 }
 else
 {
