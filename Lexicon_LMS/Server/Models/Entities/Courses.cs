@@ -1,4 +1,4 @@
-﻿namespace Lexicon_LMS.Shared.Models.Entities;
+﻿namespace Lexicon_LMS.Server.Models.Entities;
 
 public class Courses
 {

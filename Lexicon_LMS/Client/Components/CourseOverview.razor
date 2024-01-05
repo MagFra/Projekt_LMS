@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using Lexicon_LMS.Shared.Models.Entities
+@using Lexicon_LMS.Shared.Domain
 
 @attribute [Authorize]
 @* @inject HttpClient Http *@
@@ -36,6 +36,11 @@ else if (courses.Any())
                     <td>@course?.StartDate.ToString("yyyy-MM-dd")</td>
                     <td>@course?.LengthDays</td>
                     <td>@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
+                   @*  <td>
+                        <button class="btn btn-info" @onclick="(() => ViewDetails(course.Id))">Details</button>
+                        <button class="btn btn-warning" @onclick="(() => EditCourse(course.Id))">Edit</button>
+                        <button class="btn btn-danger" @onclick="(() => DeleteCourse(course.Id))">Delete</button>
+                    </td> *@
                 </tr>
             }
         </tbody>
@@ -43,5 +48,5 @@ else if (courses.Any())
 }
 else
 {
-    <p>No courses available.</p>
+    <p class="alert alert-warning">No courses available.</p>
 }

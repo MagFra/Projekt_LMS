@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Lexicon_LMS.Server.Data;
-using Lexicon_LMS.Shared.Models.Entities;
+//using Lexicon_LMS.Shared.Domain;
+using Lexicon_LMS.Server.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Lexicon_LMS.Server.Controllers
