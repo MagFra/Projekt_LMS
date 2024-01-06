@@ -9,7 +9,7 @@ public partial class AddCourse
     private HttpClient? HttpClient { get; set; }
 
     [Inject]
-    private NavigationManager NavigationManager { get; set; }
+    private NavigationManager? NavigationManager { get; set; }
 
     private string? ErrorMessage;
 
@@ -21,7 +21,7 @@ public partial class AddCourse
         try
         {
             // Send a POST request to create the new course
-            using var response = await HttpClient.PostAsJsonAsync("/api/Courses", newCourse);
+            using var response = await HttpClient?.PostAsJsonAsync("/api/Courses", newCourse)!;
 
             if (!response.IsSuccessStatusCode)
             {
@@ -35,7 +35,7 @@ public partial class AddCourse
             newCourse = await response.Content.ReadFromJsonAsync<CourseDTO>();
 
             // Redirect to CourseOverview page after successful creation
-            NavigationManager.NavigateTo("/listofcourses");
+            NavigationManager?.NavigateTo("/listofcourses");
         }
         catch (Exception exception)
         {

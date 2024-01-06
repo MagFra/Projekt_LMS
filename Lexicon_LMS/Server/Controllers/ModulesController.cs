@@ -10,7 +10,7 @@ using Lexicon_LMS.Server.Models.Entities;
 
 namespace Lexicon_LMS.Server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/modules")]
     [ApiController]
     public class ModulesController : ControllerBase
     {

@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Lexicon_LMS.Server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/courses")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CoursesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
