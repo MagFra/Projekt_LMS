@@ -8,6 +8,6 @@ namespace Lexicon_LMS.Shared.Domain
 {
     public class ModuleListDTO
     {
-        public ICollection<ModuleDTO> ListOfModules { get; set; } = new List<ModuleDTO>();
+        public IEnumerable<ModuleDTO>? ListOfModules { get; set; } = default!;
     }
 }

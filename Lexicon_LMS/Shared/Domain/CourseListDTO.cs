@@ -8,6 +8,6 @@ namespace Lexicon_LMS.Shared.Domain
 {
     public class CourseListDTO
     {
-        public ICollection<CourseDTO> ListOfCourses { get; set; } = new List<CourseDTO>();
+        public IEnumerable<CourseDTO> ListOfCourses { get; set; } = new List<CourseDTO>();
     }
 }
