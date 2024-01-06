@@ -1,9 +1,5 @@
 ﻿<h4>Course Information</h4>
 
-@code {
-
-}
-
 @* Course: @CourseInfo *@
 
 <table class="table">
@@ -17,10 +13,10 @@
 	</thead>
 
 <tbody>
-@foreach(var module in Module)
+@foreach(var module in Module!)
 {
 	<tr>			
-		<th>@module. .Name</th>
+		<th>@module.Name</th>
 		<th>@module.Description</th>
 		<th>@module.StartDate</th>
 		<th>@module.LengthOfDays</th>
