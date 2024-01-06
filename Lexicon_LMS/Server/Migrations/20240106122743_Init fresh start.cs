@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace Lexicon_LMS.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class SeedCourse : Migration
+    public partial class Initfreshstart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -308,17 +306,6 @@ namespace Lexicon_LMS.Server.Migrations
                         principalTable: "activity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "courses",
-                columns: new[] { "Id", "Description", "LastApplicationDay", "LengthDays", "Name", "StartDate" },
-                values: new object[,]
-                {
-                    { 5, "Learn the fundamentals of JavaScript programming.", new DateTime(2024, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 30, "JavaScript", new DateTimeOffset(new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)) },
-                    { 6, "Explore the world of Python and its versatile applications.", new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 45, "Python", new DateTimeOffset(new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)) },
-                    { 7, "Master Java programming for building scalable applications.", new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 60, "Java", new DateTimeOffset(new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)) },
-                    { 8, "Dive into the Ruby programming language and its elegant syntax.", new DateTime(2024, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 30, "Ruby", new DateTimeOffset(new DateTime(2024, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)) }
                 });
 
             migrationBuilder.CreateIndex(

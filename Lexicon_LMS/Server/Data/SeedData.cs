@@ -31,6 +31,15 @@ namespace Lexicon_LMS.Server.Data
             };
 
             await AddUsersAsync(users);
+
+            var courses = new (string, DateTime, int, string, DateTime)[]{
+                ("Learn the fundamentals of JavaScript programming.", DateTime.Parse("2024-01-05"), 30, "JavaScript", DateTime.Parse("2024-02-01")),
+                ("Explore the world of Python and its versatile applications.", DateTime.Parse("2024-01-10"), 45, "Python", DateTime.Parse("2024-02-15")),
+                ("Master Java programming for building scalable applications.", DateTime.Parse("2024-01-15"), 60, "Java", DateTime.Parse("2024-03-01")),
+                ("Dive into the Ruby programming language and its elegant syntax.", DateTime.Parse("2024-01-20"), 30, "Ruby", DateTime.Parse("2024-03-15"))
+            };
+
+            await AddCoursesAsync(courses);
         }
 
         //#####################################################################################
@@ -86,6 +95,26 @@ namespace Lexicon_LMS.Server.Data
                 var result = await userManager.AddToRoleAsync(user, roleName);
                 if (!result.Succeeded) throw new Exception(string.Join("\n", result.Errors));
             }
+        }
+
+        //#####################################################################################
+
+        private static async Task AddCoursesAsync((string, DateTime, int, string, DateTime)[] courses)
+        {
+            string description, name; DateTime lastApplicationDay, startDate; int lenthDays;
+            foreach (var course in courses)
+            {
+                (description, lastApplicationDay, lenthDays, name, startDate) = course;
+                await db.courses.AddAsync(new Courses
+                {
+                    Description = description,
+                    Name = name,
+                    LastApplicationDay = lastApplicationDay,
+                    StartDate = startDate,
+                    LengthDays = lenthDays
+                });
+            }
+            await db.SaveChangesAsync();
         }
     }
 }
