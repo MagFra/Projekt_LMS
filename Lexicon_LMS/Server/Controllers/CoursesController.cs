@@ -6,12 +6,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Lexicon_LMS.Server.Data;
+//using Lexicon_LMS.Shared.Domain;
 using Lexicon_LMS.Server.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lexicon_LMS.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CoursesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -23,7 +26,7 @@ namespace Lexicon_LMS.Server.Controllers
 
         // GET: api/Courses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Courses>>> Getcourse()
+        public async Task<ActionResult<List<Courses>>> Getcourse()
         {
           if (_context.courses == null)
           {
