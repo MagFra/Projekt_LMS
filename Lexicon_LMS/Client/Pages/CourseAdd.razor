@@ -1,0 +1,48 @@
+﻿@page "/courseadd"
+@using Microsoft.AspNetCore.Authorization
+@using Lexicon_LMS.Shared.Domain
+@inject HttpClient Http
+
+@attribute [Authorize(Roles = "Admin")]
+
+<h3>Add Course</h3>
+
+responseData: @responseData<br />
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMessage
+    </div>
+}
+
+<section class="course-edit">
+
+    <EditForm Model="@Course" OnValidSubmit="@HandleValidSubmit">
+
+        <DataAnnotationsValidator/>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Info</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">
+                        <InputDate id="Date" @bind-Value="Course.StartDate" class="form-control col-md-8"></InputDate>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <a href="@($"courses")" class="btn btn-outline-primary">Back to Courses</a>&nbsp;
+        <button type="submit" class="btn btn-primary me-1">Add Course</button>
+    </EditForm>
+</section>
