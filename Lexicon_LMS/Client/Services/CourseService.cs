@@ -20,12 +20,12 @@ namespace Lexicon_LMS.Client.Services
 
         public CourseDTO GetCourse(int Id)
         {
-            return Courses.FirstOrDefault(x => x.Id == Id);
+            return Courses.FirstOrDefault(x => x.Id == Id)!;
         }
 
         public CourseDTO GetDevice(int Id)
         {
-            return Courses.FirstOrDefault(x => x.Id == Id);
+            return Courses.FirstOrDefault(x => x.Id == Id)!;
         }
 
 

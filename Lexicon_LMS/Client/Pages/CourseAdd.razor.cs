@@ -13,10 +13,10 @@ namespace Lexicon_LMS.Client.Pages
     public partial class CourseAdd
     {
         [Inject]
-        public CourseService CourseService { get; set; }
+        public CourseService? CourseService { get; set; }
 
         [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        public NavigationManager? NavigationManager { get; set; }
 
         public CourseDTO Course { get; set; } = new CourseDTO();
 
@@ -39,7 +39,7 @@ namespace Lexicon_LMS.Client.Pages
                 if (response.IsSuccessStatusCode)
                 {
                     responseData = await response.Content.ReadAsStringAsync();
-                    NavigationManager.NavigateTo($"courses");
+                    NavigationManager?.NavigateTo($"courses");
                 }
                 else
                 {

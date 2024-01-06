@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Lexicon_LMS.Server.Models.Entities;
 using Lexicon_LMS.Shared.Domain;
+
+
 namespace Lexicon_LMS.Server.Models.Profiles
 {
     public class MapperProfile : Profile

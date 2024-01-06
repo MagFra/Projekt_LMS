@@ -2,7 +2,7 @@ using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Extensions;
 using Lexicon_LMS.Shared.Domain;
 using Lexicon_LMS.Server.Models.Entities;
-//using Lexicon_LMS.Shared.Models.Profiles;
+using Lexicon_LMS.Server.Models.Profiles;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
