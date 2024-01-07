@@ -6,27 +6,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Shared.Domain.ModulesDTOs
 {
-    public class ModuleForCreationDTO
+    public class ModuleForUpdateDTO
     {
-        //[Required]
+        [Key, Required]
+        public int Id { get; set; }
+
+
+        [Required]
         public int CourseId { get; set; }
 
 
-        //[Required]
+        [Required]
         public string Name { get; set; } = default!;
 
 
-        //[Required]
+        [Required]
         public string Description { get; set; } = default!;
 
 
-        //[Required]
+        [Required]
         public DateTime StartDate { get; set; }
 
 
-        //[Required, Range(1, 365)]
+        [Required, Range(1, 365)]
         public int LengthOfDays { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
-using Lexicon_LMS.Shared.Domain;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicon_LMS.Server.Services

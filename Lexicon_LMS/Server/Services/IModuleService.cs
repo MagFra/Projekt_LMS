@@ -1,4 +1,4 @@
-﻿using Lexicon_LMS.Shared.Domain;
+﻿using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 
 namespace Lexicon_LMS.Server.Services
 {

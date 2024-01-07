@@ -1,6 +1,6 @@
 ﻿using Lexicon_LMS.Client.Components;
 using Lexicon_LMS.Client.Pages;
-using Lexicon_LMS.Shared.Domain;
+using Lexicon_LMS.Shared.Domain.CoursesDTOs;
 using Microsoft.AspNetCore.Components;
 
 namespace Lexicon_LMS.Client.Services

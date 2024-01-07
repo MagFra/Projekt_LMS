@@ -1,4 +1,4 @@
-﻿using Lexicon_LMS.Shared.Domain;
+﻿using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicon_LMS.Client.Components

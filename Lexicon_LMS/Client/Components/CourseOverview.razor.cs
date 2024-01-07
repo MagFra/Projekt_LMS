@@ -1,6 +1,6 @@
-﻿using Lexicon_LMS.Shared.Domain;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
+using Lexicon_LMS.Shared.Domain.CoursesDTOs;
 
 
 namespace Lexicon_LMS.Client.Components

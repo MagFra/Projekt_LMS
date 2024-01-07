@@ -1,11 +1,11 @@
 ﻿using Lexicon_LMS.Client.Services;
-using Lexicon_LMS.Shared.Domain;
 using Microsoft.AspNetCore.Components;
 using System.Text.Json;
 using System.Net.Http.Headers;
 using System.Net;
 using System.Xml.Schema;
 using Microsoft.AspNetCore.Authorization;
+using Lexicon_LMS.Shared.Domain.CoursesDTOs;
 
 namespace Lexicon_LMS.Client.Pages
 {

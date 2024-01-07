@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
 using Lexicon_LMS.Server.Models.Entities;
-using Lexicon_LMS.Shared.Domain;
+using Lexicon_LMS.Shared.Domain.ActivitiesDTOs;
+using Lexicon_LMS.Shared.Domain.AssignmetsDTOs;
+using Lexicon_LMS.Shared.Domain.CoursesDTOs;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+using Lexicon_LMS.Shared.Domain.UsersDTOs;
 
 
 namespace Lexicon_LMS.Server.Models.Profiles

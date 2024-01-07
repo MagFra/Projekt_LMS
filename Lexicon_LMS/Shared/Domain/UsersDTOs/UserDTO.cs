@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lexicon_LMS.Shared.Domain.AssignmetsDTOs;
+using Lexicon_LMS.Shared.Domain.CoursesDTOs;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Shared.Domain.UsersDTOs
 {
     public class UserDTO
     {

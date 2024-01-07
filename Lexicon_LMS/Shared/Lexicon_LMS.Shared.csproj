@@ -8,11 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="Domain\NewFolder1\**" />
-    <Compile Remove="Domain\NewFolder\**" />
     <EmbeddedResource Remove="Domain\NewFolder1\**" />
-    <EmbeddedResource Remove="Domain\NewFolder\**" />
     <None Remove="Domain\NewFolder1\**" />
-    <None Remove="Domain\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>

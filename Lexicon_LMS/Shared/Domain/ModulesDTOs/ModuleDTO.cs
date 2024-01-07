@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lexicon_LMS.Shared.Domain.ActivitiesDTOs;
+using Lexicon_LMS.Shared.Domain.CoursesDTOs;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Shared.Domain.ModulesDTOs
 {
     public class ModuleDTO
     {

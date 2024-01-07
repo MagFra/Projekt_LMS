@@ -1,4 +1,4 @@
-﻿using Lexicon_LMS.Shared.Domain;
+﻿using Lexicon_LMS.Shared.Domain.CoursesDTOs;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 
