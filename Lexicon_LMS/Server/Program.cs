@@ -31,7 +31,12 @@ builder.Services.AddIdentityServer()
     }
     );
 
-builder.Services.AddAutoMapper(typeof(MapperProfile));
+builder.Services.AddAutoMapper(typeof(ActivitiesMapperProfile));
+builder.Services.AddAutoMapper(typeof(AssignmentsMapperProfile));
+builder.Services.AddAutoMapper(typeof(CoursesMapperProfile));
+builder.Services.AddAutoMapper(typeof(ModulesMapperProfile));
+builder.Services.AddAutoMapper(typeof(UsersMapperProfile));
+
 builder.Services.AddScoped<IModuleService, ModuleService>();
 
 builder.Services.AddAuthentication()
