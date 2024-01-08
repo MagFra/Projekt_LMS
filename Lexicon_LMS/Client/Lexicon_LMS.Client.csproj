@@ -18,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\NewFolder\" />
+    <Folder Include="Shared\img\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
