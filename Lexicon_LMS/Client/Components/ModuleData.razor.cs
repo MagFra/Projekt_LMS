@@ -12,7 +12,7 @@ namespace Lexicon_LMS.Client.Components
         public string ExtraCaption { get; set; } = string.Empty;
 
         [Inject]
-        public IModuleService? ModuleService { get; set; }
+        //public IModuleService? ModuleService { get; set; }
 
         public List<ModuleDTO> ModuleLst { get; set; } = new List<ModuleDTO>();
 

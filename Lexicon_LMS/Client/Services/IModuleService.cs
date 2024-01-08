@@ -7,12 +7,12 @@ namespace Lexicon_LMS.Server.Services
     {
         List<ModuleDTO> GetModules();
 
-        CourseDTO GetModule(int Id);
+        ModuleDTO GetModule(int Id);
 
         //void DeleteCourse(int Id);
 
         //void UpdateCourse(CourseDTO Course);
 
-        void AddModule(ModuleDTO Course);
+        void AddModule(ModuleDTO Module);
     }
 }
