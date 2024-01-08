@@ -1,12 +1,12 @@
-using Lexicon_LMS.Server.Data;
-using Lexicon_LMS.Server.Extensions;
-using Lexicon_LMS.Shared.Domain;
-using Lexicon_LMS.Server.Models.Entities;
-using Lexicon_LMS.Server.Models.Profiles;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Lexicon_LMS.Server.Data;
+using Lexicon_LMS.Server.Extensions;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+using Lexicon_LMS.Server.Models.Entities;
+using Lexicon_LMS.Server.Models.Profiles;
 using Lexicon_LMS.Server.Services;
 
 
@@ -44,8 +44,8 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
