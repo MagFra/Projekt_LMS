@@ -18,9 +18,9 @@ namespace Lexicon_LMS.Shared.Domain.CoursesDTOs
         public DateTime LastApplicationDay { get; set; }
 
         // Navigation properties
-        public ICollection<Module> ModuleList { get; set; } = new List<Module>();
+        public ICollection<Module>? ModuleList { get; set; } = null!;
 
-        public ICollection<UserDTO> StudentList { get; set; } = new List<UserDTO>();
+        public ICollection<UserDTO>? StudentList { get; set; } = null!;
 
     }
 }

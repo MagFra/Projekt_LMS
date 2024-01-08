@@ -23,7 +23,7 @@ namespace Lexicon_LMS.Shared.Domain.ActivitiesDTOs
 
 
         // Navigation property
-        public ModuleDTO Module { get; set; } = new ModuleDTO();
-        public ICollection<AssignmentDTO> ListOfAssignments { get; set; } = new List<AssignmentDTO>();
+        public ModuleDTO? Module { get; set; } = null!;
+        public ICollection<AssignmentDTO>? ListOfAssignments { get; set; } = null!;
     }
 }
