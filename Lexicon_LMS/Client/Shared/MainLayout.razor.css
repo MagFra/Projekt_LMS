@@ -97,20 +97,53 @@ main {
     }
 
     .page-footer {
-        background-color: var(--com-bg2);
+        background-color: white; /*var(--com-bg2);*/
         border-top: 1px solid lightgray;
         border-bottom: 2px solid lightgray;
-        border-radius: 5px 5px 0px 0px;
-        position: fixed;
+        border-radius: 0px 0px 0px 0px;
+        position: absolute;
         bottom: 0;
         color: black;
         text-align: center;
-        width: 100%;
+        left: 150px;
+        width: calc(100vw - 150px);
+        
         font-size: smaller;
         font-style: oblique;
     }
 
-        .page-footer :hover {
+    /*Code I added - Start*/
+    /*.bottom-row {
+        background-color: #f7f7f7;
+        border-top: 1px solid #d6d5d5;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+    }*/
+
+        /*Select all a elements where parent is a .bottom-row*/
+        /*.bottom-row > a {
+            display: flex;
+            color: rgb(33, 37, 41);*/
+            /*color and text-decor used to not show it as link*/
+            /*text-decoration: none;*/
+            /*fontsize is the same copied from navbar-brand style inside NavMenu.razor.css*/
+            /*font-size: 1.1rem;
+        }*/
+
+    /*Optionally this selector will also work: main article.content*/
+    /*main > .content {
+        overflow-y: auto;
+        margin-bottom: 3.5rem;
+    }*/
+    /*Code I added - End*/
+
+
+        ./*page-footer :hover {
             font-size: larger;
-        }
+        }*/
 }

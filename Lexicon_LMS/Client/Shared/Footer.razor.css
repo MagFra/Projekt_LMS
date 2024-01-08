@@ -1,0 +1,6 @@
+﻿.footer {
+    background-color: #f7f7f7; /* eller annan bakgrundsfärg du vill ha */
+    padding: 10px; /* Justera padding efter dina behov */
+    position: relative;
+    margin-top: auto; /* Används för att placera footern längst ned på sidan */
+}
