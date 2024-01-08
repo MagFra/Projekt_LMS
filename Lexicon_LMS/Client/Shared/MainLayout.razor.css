@@ -95,4 +95,22 @@ main {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
+
+    .page-footer {
+        background-color: var(--com-bg2);
+        border-top: 1px solid lightgray;
+        border-bottom: 2px solid lightgray;
+        border-radius: 5px 5px 0px 0px;
+        position: fixed;
+        bottom: 0;
+        color: black;
+        text-align: center;
+        width: 100%;
+        font-size: smaller;
+        font-style: oblique;
+    }
+
+        .page-footer :hover {
+            font-size: larger;
+        }
 }
