@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Lexicon_LMS.Server.Data.Migrations
+namespace Lexicon_LMS.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -171,6 +171,9 @@ namespace Lexicon_LMS.Server.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ActivityTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -190,9 +193,28 @@ namespace Lexicon_LMS.Server.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ActivityTypeId");
+
                     b.HasIndex("ModuleId");
 
                     b.ToTable("activity");
+                });
+
+            modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.ActivityType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActivityType");
                 });
 
             modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.ApplicationUser", b =>
@@ -314,8 +336,8 @@ namespace Lexicon_LMS.Server.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset>("StartDate")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -491,11 +513,19 @@ namespace Lexicon_LMS.Server.Data.Migrations
 
             modelBuilder.Entity("Lexicon_LMS.Server.Models.Entities.Activities", b =>
                 {
+                    b.HasOne("Lexicon_LMS.Server.Models.Entities.ActivityType", "ActivityType")
+                        .WithMany()
+                        .HasForeignKey("ActivityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Lexicon_LMS.Server.Models.Entities.Module", "Module")
                         .WithMany("Activities")
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ActivityType");
 
                     b.Navigation("Module");
                 });

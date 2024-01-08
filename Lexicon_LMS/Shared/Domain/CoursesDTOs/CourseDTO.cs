@@ -4,8 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Lexicon_LMS.Shared.Domain.UsersDTOs;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Shared.Domain.CoursesDTOs
 {
     public class CourseDTO
     {

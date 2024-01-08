@@ -4,8 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Lexicon_LMS.Shared.Domain.AssignmetsDTOs;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Shared.Domain.ActivitiesDTOs
 {
     public class ActivityDTO
     {

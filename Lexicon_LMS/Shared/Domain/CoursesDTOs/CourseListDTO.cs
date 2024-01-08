@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Shared.Domain.CoursesDTOs
 {
     public class CourseListDTO
     {
-        public ICollection<CourseDTO> ListOfCourses { get; set; } = new List<CourseDTO>();
+        public IEnumerable<CourseDTO> ListOfCourses { get; set; } = new List<CourseDTO>();
     }
 }

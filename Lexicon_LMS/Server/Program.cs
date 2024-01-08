@@ -1,13 +1,14 @@
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Extensions;
 using Lexicon_LMS.Shared.Domain;
-
 using Lexicon_LMS.Server.Models.Entities;
 using Lexicon_LMS.Server.Models.Profiles;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Lexicon_LMS.Server.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,15 +23,30 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddIdentityServer()
-    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
+    options =>
+    {
+        options.IdentityResources["openid"].UserClaims.Add("role");
+        options.ApiResources.Single().UserClaims.Add("role");
+    }
+    );
 
-builder.Services.AddAutoMapper(typeof(MapperProfile));
+builder.Services.AddAutoMapper(typeof(ActivitiesMapperProfile));
+builder.Services.AddAutoMapper(typeof(AssignmentsMapperProfile));
+builder.Services.AddAutoMapper(typeof(CoursesMapperProfile));
+builder.Services.AddAutoMapper(typeof(ModulesMapperProfile));
+builder.Services.AddAutoMapper(typeof(UsersMapperProfile));
+
+builder.Services.AddScoped<IModuleService, ModuleService>();
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer();
+
 
 var app = builder.Build();
 
@@ -39,6 +55,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseWebAssemblyDebugging();
+    app.UseSwagger();
+    app.UseSwaggerUI();
     await app.SeedDataAsync();
 }
 else
@@ -63,4 +81,6 @@ app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
 
+
 app.Run();
+

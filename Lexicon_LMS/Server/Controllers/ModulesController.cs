@@ -7,30 +7,53 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
+using Lexicon_LMS.Server.Services;
+using Lexicon_LMS.Server.Models.Profiles;
+using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 
 namespace Lexicon_LMS.Server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/modules")]
     [ApiController]
     public class ModulesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IModuleService _moduleService;
+        //private readonly IMapper _mapper;
 
-        public ModulesController(ApplicationDbContext context)
+        public ModulesController(ApplicationDbContext context, IModuleService moduleService)//, IMapper mapper)
         {
             _context = context;
+            _moduleService = moduleService;
+            //_mapper = mapper;
         }
 
         // GET: api/Modules
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Module>>> Getmodule()
         {
-          if (_context.module == null)
-          {
-              return NotFound();
-          }
+            if (_context.module == null)
+            {
+                return NotFound();
+            }
             return await _context.module.ToListAsync();
         }
+
+
+        // GET: api/Modules
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<ModuleDTO>>> Getmodule()
+        //{
+        //    if (_context.module == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var test = await _moduleService.GetModuleListAsync();
+        //    return Ok(test);
+        //}
+
 
         // GET: api/Modules/5
         [HttpGet("{id}")]
@@ -81,19 +104,22 @@ namespace Lexicon_LMS.Server.Controllers
             return NoContent();
         }
 
-        // POST: api/Modules
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //POST: api/Modules
+        //To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Module>> PostModule(Module @module)
+        public async Task<ActionResult<Module>> PostModule(ModuleForCreationDTO @module)
         {
-          if (_context.module == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.module'  is null.");
-          }
-            _context.module.Add(@module);
-            await _context.SaveChangesAsync();
+            if (_context.module == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.module'  is null.");
+            }
+            //var result = _mapper.Map<Module>(@module);
+            var result = await _moduleService.AddModuleAsync(@module);
+            //_context.module.Add(result);
+            //await _context.SaveChangesAsync();
+            //var result2 = _mapper.Map<ModuleDTO>(result);
 
-            return CreatedAtAction("GetModule", new { id = @module.Id }, @module);
+            return CreatedAtAction("GetModule", new { id = result.Id }, result);
         }
 
         // DELETE: api/Modules/5

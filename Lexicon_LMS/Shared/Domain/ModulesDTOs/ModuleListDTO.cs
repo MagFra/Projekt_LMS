@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lexicon_LMS.Shared.Domain
+namespace Lexicon_LMS.Shared.Domain.ModulesDTOs
 {
     public class ModuleListDTO
     {
-        public ICollection<ModuleDTO> ListOfModules { get; set; } = new List<ModuleDTO>();
+        public IEnumerable<ModuleDTO>? ListOfModules { get; set; } = default!;
     }
 }
