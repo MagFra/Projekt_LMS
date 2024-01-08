@@ -21,8 +21,8 @@ namespace Lexicon_LMS.Server.Models.Entities
 
         
         // Navigation property
-        public ActivityType ActivityType { get; set; } = new ActivityType();
-        public Module Module { get; set; } = new Module();
-        public ICollection<Assignments> AssignmentsLista { get; set; } = new List<Assignments>();
+        public ActivityType? ActivityType { get; set; } = null!;
+        public Module? Module { get; set; } = null!;
+        public ICollection<Assignments>? AssignmentsLista { get; set; } = null!;
     }
 }

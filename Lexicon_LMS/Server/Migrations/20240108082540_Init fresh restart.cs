@@ -6,11 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Lexicon_LMS.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Initfreshstart : Migration
+    public partial class Initfreshrestart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ActivityType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActivityType", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -270,11 +283,18 @@ namespace Lexicon_LMS.Server.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LenthDays = table.Column<int>(type: "int", nullable: false),
+                    ActivityTypeId = table.Column<int>(type: "int", nullable: false),
                     ModuleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_activity", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_activity_ActivityType_ActivityTypeId",
+                        column: x => x.ActivityTypeId,
+                        principalTable: "ActivityType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_activity_module_ModuleId",
                         column: x => x.ModuleId,
@@ -307,6 +327,11 @@ namespace Lexicon_LMS.Server.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_activity_ActivityTypeId",
+                table: "activity",
+                column: "ActivityTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_activity_ModuleId",
@@ -442,6 +467,9 @@ namespace Lexicon_LMS.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "activity");
+
+            migrationBuilder.DropTable(
+                name: "ActivityType");
 
             migrationBuilder.DropTable(
                 name: "module");
