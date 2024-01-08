@@ -17,7 +17,7 @@ main {
 }
 
 .main-content-wrapper {
-    max-width: 800px; /* Ange önskad max-bredden för innehållet här */
+    max-width: 1000px; /* Ange önskad max-bredden för innehållet här */
     margin: 0 auto; /* Centrera innehållet horisontellt */
     background-color: rgba(255, 255, 255, 0.5); /* Vit bakgrund med 0.5 opacitet */
     padding: 20px; /* Lägg till valfritt utrymme inuti rutan */
