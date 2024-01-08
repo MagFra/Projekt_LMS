@@ -15,11 +15,13 @@ namespace Lexicon_LMS.Server.Models.Entities
         public int LenthDays { get; set; }
 
 
-        // Foreign key
-        public int ModuleId { get; set; }
+		// Foreign key
+		public int ActivityTypeId { get; set; }
+		public int ModuleId { get; set; }
 
-
+        
         // Navigation property
+        public ActivityType ActivityType { get; set; } = new ActivityType();
         public Module Module { get; set; } = new Module();
         public ICollection<Assignments> AssignmentsLista { get; set; } = new List<Assignments>();
     }
