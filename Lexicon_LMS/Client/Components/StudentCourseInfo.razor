@@ -22,7 +22,7 @@ Course: @_courses.Capacity
 				@*  scope="row"<td scope="row">@course?.StartDate.ToString("yyyy-MM-dd")</td> *@
 				<th scope="row">@module.LengthDays</th>
 				<th scope="row">@module.LastApplicationDay.ToString("yyyy-MM-dd")</th>
-				<a href="@($"UpdateCourse/{module.Id}")"
+				<a href="@($"sl_editcourse/{module.Id}")"
 				   class="btn btn-primary">Apply</a>
 			</tr>
 }

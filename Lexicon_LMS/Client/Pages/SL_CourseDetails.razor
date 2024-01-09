@@ -1,0 +1,7 @@
+﻿@page "/sl_editcourse/{CourseId:int}"
+
+@inherits UpdateCourse
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<UpdateCourse CourseId="CourseId"></UpdateCourse>
