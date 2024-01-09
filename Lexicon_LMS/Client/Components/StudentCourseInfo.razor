@@ -1,27 +1,31 @@
-﻿<h4>Course Information</h4>
+﻿<h4>Available Courses</h4>
 
-@* Course: @Courses *@
+Course: @_courses.Capacity
 
-<table class="table">
-	<thead>
+<table class="table table-striped">
+	<thead class="thead-dark">
 		<tr>
-			<th>Module</th>
-			<th>Description</th>
-			<th>Start Date</th>
-			<th>Duration</th>
+			<th scope="col">Module</th>
+			<th scope="col">Start Date</th>
+			<th scope="col">Duration</th>
+			<th scope="col">Last Day to Apply</th>
 		</tr>
 	</thead>
 
-@* <tbody>
-@foreach(var module in Courses)
+<tbody>
+		
+@foreach(var module in _courses)
 {
-	<tr>			
-		<th>@module.Name</th>
-		<th>@module.Description</th>
-		<th>@module.StartDate</th>
-		<th>@module.LengthDays</th>
-		</tr>
+			<tr>
+				<th scope="row">@module.Name</th>
+				<th scope="row">@module.StartDate.ToString("yyyy-MM-dd")</th>
+				@*  scope="row"<td scope="row">@course?.StartDate.ToString("yyyy-MM-dd")</td> *@
+				<th scope="row">@module.LengthDays</th>
+				<th scope="row">@module.LastApplicationDay.ToString("yyyy-MM-dd")</th>
+				<a href="@($"UpdateCourse/{module.Id}")"
+				   class="btn btn-primary">Apply</a>
+			</tr>
 }
-</tbody> *@
+</tbody>
 
 </table>

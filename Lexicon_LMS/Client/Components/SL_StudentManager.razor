@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Lexicon_LMS.Shared.Domain
+
+@* @attribute [Authorize] *@
+
+<h3>SL_StudentManagement</h3>
+
+@if (_users == null)
+{
+    <p>Loading....</p>
+}
+else if (_users.Any())
+{
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Course Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">E-Mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in _users)
+            {
+                <tr>
+                    <td scope="row">@user?.Id</td>
+                    <td scope="row">@user?.FirstName</td>
+                    <td scope="row">@user?.LastName</td>
+                    <td scope="row">@user?.Email</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-warning">No courses available.</p>
+}
