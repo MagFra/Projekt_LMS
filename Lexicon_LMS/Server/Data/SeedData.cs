@@ -40,6 +40,7 @@ namespace Lexicon_LMS.Server.Data
             };
 
             await AddCoursesAsync(courses);
+
         }
 
         //#####################################################################################
@@ -99,22 +100,65 @@ namespace Lexicon_LMS.Server.Data
 
         //#####################################################################################
 
+        //private static async Task AddCoursesAsync((string, DateTime, int, string, DateTime)[] courses)
+        //{
+        //    string description, name; DateTime lastApplicationDay, startDate; int lenthDays;
+        //    foreach (var course in courses)
+        //    {
+        //        (description, lastApplicationDay, lenthDays, name, startDate) = course;
+        //        await db.courses.AddAsync(new Courses
+        //        {
+        //            Description = description,
+        //            Name = name,
+        //            LastApplicationDay = lastApplicationDay,
+        //            StartDate = startDate,
+        //            LengthDays = lenthDays
+        //        });
+        //    }
+        //    await db.SaveChangesAsync();
+        //}
+
         private static async Task AddCoursesAsync((string, DateTime, int, string, DateTime)[] courses)
         {
-            string description, name; DateTime lastApplicationDay, startDate; int lenthDays;
+            string description, name; DateTime lastApplicationDay, startDate; int lengthDays;
             foreach (var course in courses)
             {
-                (description, lastApplicationDay, lenthDays, name, startDate) = course;
-                await db.courses.AddAsync(new Courses
+                (description, lastApplicationDay, lengthDays, name, startDate) = course;
+
+                // Add the course
+                var newCourse = new Courses
                 {
                     Description = description,
                     Name = name,
                     LastApplicationDay = lastApplicationDay,
                     StartDate = startDate,
-                    LengthDays = lenthDays
-                });
-            }
-            await db.SaveChangesAsync();
-        }
+                    LengthDays = lengthDays
+                };
+                await db.courses.AddAsync(newCourse);
+
+                // Add modules for the course
+                var modules = new (string, string, DateTime, int)[] {
+                    ("HTML", "HTML description", startDate, 10),
+                    ("CSS", "CSS description", startDate.AddDays(10), 15),
+                   
+                };
+
+                        foreach (var module in modules)
+                        {
+                            (var moduleName, var moduleDescription, var moduleStartDate, var moduleLengthDays) = module;
+
+                            await db.module.AddAsync(new Module
+                            {
+                                CourseId = newCourse.Id, // Assign the course ID to the module's CourseId property
+                                Name = moduleName,
+                                Description = moduleDescription,
+                                StartDate = moduleStartDate,
+                                LengthOfDays = moduleLengthDays
+                            });
+                        }
+                    }
+                    await db.SaveChangesAsync();
+                }
+
     }
 }

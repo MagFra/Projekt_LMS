@@ -1,0 +1,31 @@
+﻿@page "/coursedetails/{courseId:int}"
+
+<h3>Course Details</h3>
+
+@if (course != null)
+{
+    <h4>@course.Name</h4>
+
+    <h5>Modules:</h5>
+    <ul>
+        @foreach (var module in course.ModuleList)
+        {
+            <li>@module.Name</li>
+            <li>@module.Description</li>
+        }
+    </ul>
+
+    <h5>Students:</h5>
+    <ul>
+        @foreach (var student in course.StudentList)
+        {
+            <li>@student.UserName</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Course not found.</p>
+}
+
+<a href="@($"ListOfCourses")" class="btn btn-outline-primary">Back to Course list</a>
