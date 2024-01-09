@@ -10,9 +10,9 @@ public class Courses
     public DateTime LastApplicationDay { get; set; }
 
     // Navigation properties
-    public ICollection<Module> ModuleList { get; set; } = new List<Module>();
+    public ICollection<Module>? ModuleList { get; set; } = null!;
    
-    public ICollection<ApplicationUser> StudentList { get; set; } = new List<ApplicationUser>();
+    public ICollection<ApplicationUser>? StudentList { get; set; } = null!;
     
 }
 

@@ -24,8 +24,8 @@ namespace Lexicon_LMS.Shared.Domain.UsersDTOs
         public int? CourseId { get; set; } = null!;
 
         //Relationer
-        public CourseDTO Course { get; set; } = new CourseDTO();
-        public ICollection<AssignmentDTO> ListOfAssignments { get; set; } = new List<AssignmentDTO>();
+        public CourseDTO? Course { get; set; } = null!;
+        public ICollection<AssignmentDTO>? ListOfAssignments { get; set; } = null!;
 
     }
 }

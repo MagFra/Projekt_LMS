@@ -1,12 +1,12 @@
-using Lexicon_LMS.Server.Data;
-using Lexicon_LMS.Server.Extensions;
-using Lexicon_LMS.Shared.Domain;
-using Lexicon_LMS.Server.Models.Entities;
-using Lexicon_LMS.Server.Models.Profiles;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Lexicon_LMS.Server.Data;
+using Lexicon_LMS.Server.Extensions;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+using Lexicon_LMS.Server.Models.Entities;
+using Lexicon_LMS.Server.Models.Profiles;
 using Lexicon_LMS.Server.Services;
 
 
@@ -22,14 +22,27 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+//builder.Services.AddIdentityServer()
+//    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
+//    options =>
+//    {
+//        options.IdentityResources["openid"].UserClaims.Add("role");
+//        options.ApiResources.Single().UserClaims.Add("role");
+//    }
+//    );
+
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
-    options =>
-    {
-        options.IdentityResources["openid"].UserClaims.Add("role");
-        options.ApiResources.Single().UserClaims.Add("role");
-    }
-    );
+
+        options => {
+
+            options.IdentityResources["openid"].UserClaims.Add("role");
+
+            if (options.ApiResources.Any())
+            {
+                options.ApiResources.Single().UserClaims.Add("role");
+            }
+        });
 
 builder.Services.AddAutoMapper(typeof(ActivitiesMapperProfile));
 builder.Services.AddAutoMapper(typeof(AssignmentsMapperProfile));
@@ -39,13 +52,13 @@ builder.Services.AddAutoMapper(typeof(UsersMapperProfile));
 
 builder.Services.AddScoped<IModuleService, ModuleService>();
 
-builder.Services.AddAuthentication()
-    .AddIdentityServerJwt();
+//builder.Services.AddAuthentication()
+//    .AddIdentityServerJwt();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
