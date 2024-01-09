@@ -34,6 +34,7 @@ namespace Lexicon_LMS.Server.Data
             .WithOne(m => m.Course)
             .HasForeignKey(m => m.CourseId)
             .OnDelete(DeleteBehavior.Cascade);
+
         }
 
         public DbSet<Lexicon_LMS.Server.Models.Entities.ActivityType> ActivityType { get; set; } = default!;
