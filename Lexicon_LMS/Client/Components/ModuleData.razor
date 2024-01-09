@@ -19,7 +19,7 @@
                 <td scope="row"><a href="@($"moduleinfo/{module.Id}")" class="btn btn-outline-primary">Info</a></td>
                 <td scope="row"><a href="@($"moduleedit/{module.Id}")" class="btn btn-outline-primary">Edit</a></td>
                 <td scope="row">
-                    <AuthorizeView Roles="Admin">
+                    <AuthorizeView Roles="Teacher">
                         <Authorized>
                             <a href="@($"moduledelete/{module.Id}")" class="btn btn-outline-primary">Delete</a>
                         </Authorized>
