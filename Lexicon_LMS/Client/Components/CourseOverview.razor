@@ -3,10 +3,11 @@
 @using Lexicon_LMS.Shared.Domain
 
 @attribute [Authorize]
-@* @inject HttpClient Http *@
 
 <PageTitle>Course Overview</PageTitle>
+
 <a href="@($"createCourse")" class="btn btn-outline-primary">Add new course</a>
+
 <h1>Course overview</h1>
 
 @if (courses == null)
@@ -24,23 +25,27 @@ else if (courses.Any())
                 <th scope="col">Start Date</th>
                 <th scope="col">Length (Days)</th>
                 <th scope="col">Last Application Day</th>
+                <th scope="col">Modules</th>
+                <th scope="col">Students</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var course in courses)
             {
                 <tr>
-                    <td>@course?.Id</td>
-                    <td>@course?.Name</td>
-                    <td>@course?.Description</td>
-                    <td>@course?.StartDate.ToString("yyyy-MM-dd")</td>
-                    <td>@course?.LengthDays</td>
-                    <td>@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
-                   @*  <td>
-                        <button class="btn btn-info" @onclick="(() => ViewDetails(course.Id))">Details</button>
-                        <button class="btn btn-warning" @onclick="(() => EditCourse(course.Id))">Edit</button>
-                        <button class="btn btn-danger" @onclick="(() => DeleteCourse(course.Id))">Delete</button>
-                    </td> *@
+                    <td scope="row">@course?.Id</td>
+                    <td scope="row">@course?.Name</td>
+                    <td scope="row">@course?.Description</td>
+                    <td scope="row">@course?.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td scope="row">@course?.LengthDays</td>
+                    <td scope="row">@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
+                    <td><a href="/modulelist/@course?.Id">View details</a></td>
+                    <td><a href="/studentlist/@course?.Id">View details</a></td>
+                    <td>
+                       @*  <a href="/editcourse/@course?.Id" class="btn btn-outline-secondary">Edit</a> *@
+                        <a href="@($"editcourse/{course?.Id}")"
+                           class="btn btn-primary m-1">Edit</a>
+                    </td>
                 </tr>
             }
         </tbody>

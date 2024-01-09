@@ -1,5 +1,7 @@
-﻿@page "/editcourse/{id:int}"
+﻿@page "/editcourse/{CourseId:int}"
+
+@inherits UpdateCourse
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
 
-<UpdateCourse></UpdateCourse>
+<UpdateCourse CourseId="CourseId"></UpdateCourse>
