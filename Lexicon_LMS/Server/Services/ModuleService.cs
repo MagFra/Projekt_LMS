@@ -2,6 +2,7 @@
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
 using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lexicon_LMS.Server.Services
@@ -22,7 +23,7 @@ namespace Lexicon_LMS.Server.Services
                 : await _db.module.Where(m => m.CourseId == corseId).Include(m => m.Activities).ToListAsync();
 
             List<ModuleDTO> modulesDTO = new List<ModuleDTO>();
-            foreach (var module in modules) { modulesDTO.Add( _mapper.Map<ModuleDTO>(module)); }
+            foreach (var module in modules) { modulesDTO.Add(_mapper.Map<ModuleDTO>(module)); }
 
             return modulesDTO; //new ModuleListDTO { ListOfModules = modulesDTO};
         }
@@ -41,29 +42,28 @@ namespace Lexicon_LMS.Server.Services
             return _mapper.Map<ModuleDTO>(module);
         }
 
-        public async void UpdateModuleAssync(ModuleForUpdateDTO dto)
-        {   
+        public async Task<bool> UpdateModuleAssync(int id, ModuleForUpdateDTO dto)
+        {
             // Testa att dto innehåller "valid" data!
 
             var module = _mapper.Map<Module>(dto);
-            if (module != null)
-            {
-                var dest = await _db.module.FirstOrDefaultAsync(m => m.Id == module.Id);
-                if (dest != null)
-                {
-                    dest = module;
-                    await _db.SaveChangesAsync();   // Bör omges av try/catch(Exception)!
 
-                }   // Bör förses med else{} och varning att modulen som försöker uppdateras inte kan hittas!
+            _db.Entry(module).State = EntityState.Modified;
 
-            }   // Bör förses med else{} och varning att inget skickades!            
+            
+                await _db.SaveChangesAsync();   // Bör omges av try/catch(Exception)!
+            return true;
+
+            // Bör förses med else{} och varning att modulen som försöker uppdateras inte kan hittas!
+
+            // Bör förses med else{} och varning att inget skickades!            
         }
 
 
         public async void DeleteModuleAssync(int moduleId)
         {
             var module = await _db.module.FirstOrDefaultAsync(m => m.Id == moduleId);
-            if(module != null)
+            if (module != null)
             {
                 _db.module.Remove(module);
                 await _db.SaveChangesAsync();

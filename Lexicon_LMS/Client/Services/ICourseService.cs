@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Components;
 namespace Lexicon_LMS.Client.Services
 {
     public interface ICourseService
-        {
-            List<CourseDTO> GetCourses();
+    {
+        List<CourseDTO> GetCourses();
 
-            CourseDTO GetCourse(int Id);
+        CourseDTO GetCourse(int Id);
 
-            //void DeleteCourse(int Id);
+        //void DeleteCourse(int Id);
 
-            //void UpdateCourse(CourseDTO Course);
+        //void UpdateCourse(CourseDTO Course);
 
-            void AddCourse(CourseDTO Course);
-        }
+        void AddCourse(CourseDTO Course);
+    }
 }

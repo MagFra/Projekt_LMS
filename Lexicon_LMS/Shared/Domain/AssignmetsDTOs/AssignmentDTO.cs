@@ -13,13 +13,13 @@ namespace Lexicon_LMS.Shared.Domain.AssignmetsDTOs
         public string Description { get; set; } = string.Empty;
 
         //Foreign Keys
-        public int ActivityId { get; set; }
-        public string ApplicationUserId { get; set; } = default!;
+        public int? ActivityId { get; set; } = null!;
+        public string? ApplicationUserId { get; set; } = null!;
 
 
         //Navigation Properties
-        public ActivityDTO Activity { get; set; } = new ActivityDTO();
-        public UserDTO Student { get; set; } = new UserDTO();
+        public ActivityDTO? Activity { get; set; } = null!;
+        public UserDTO? Student { get; set; } = null!;
 
     }
 }

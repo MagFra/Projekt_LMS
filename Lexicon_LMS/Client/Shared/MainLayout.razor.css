@@ -7,12 +7,17 @@
 main {
     flex: 1;
     background-image: linear-gradient(180deg, rgb(75, 119, 123) 0%, #faf6f7 60%);
+    /*background-image: url('../img/bgr.jpg');*/
     /*background-color: #f7f700;*/
-    background-attachment: fixed;    
+    background-attachment: fixed;
+    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
+    font-family: 'Exo 2', sans-serif;
+    /*font-family: 'Quicksand', sans-serif;*/
 }
 
 .main-content-wrapper {
-    max-width: 800px; /* Ange önskad max-bredden för innehållet här */
+    max-width: 1000px; /* Ange önskad max-bredden för innehållet här */
     margin: 0 auto; /* Centrera innehållet horisontellt */
     background-color: rgba(255, 255, 255, 0.5); /* Vit bakgrund med 0.5 opacitet */
     padding: 20px; /* Lägg till valfritt utrymme inuti rutan */
@@ -90,4 +95,55 @@ main {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
+
+    .page-footer {
+        background-color: white; /*var(--com-bg2);*/
+        border-top: 1px solid lightgray;
+        border-bottom: 2px solid lightgray;
+        border-radius: 0px 0px 0px 0px;
+        position: absolute;
+        bottom: 0;
+        color: black;
+        text-align: center;
+        left: 150px;                  /*vänstermenyn är 150 bred*/
+        width: calc(100vw - 150px);   /*bredden på footern är sidans bredd minus bredden på vänstermenyn*/
+        
+        font-size: smaller;
+        font-style: oblique;
+    }
+
+    /*Code I added - Start*/
+    /*.bottom-row {
+        background-color: #f7f7f7;
+        border-top: 1px solid #d6d5d5;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+    }*/
+
+        /*Select all a elements where parent is a .bottom-row*/
+        /*.bottom-row > a {
+            display: flex;
+            color: rgb(33, 37, 41);*/
+            /*color and text-decor used to not show it as link*/
+            /*text-decoration: none;*/
+            /*fontsize is the same copied from navbar-brand style inside NavMenu.razor.css*/
+            /*font-size: 1.1rem;
+        }*/
+
+    /*Optionally this selector will also work: main article.content*/
+    /*main > .content {
+        overflow-y: auto;
+        margin-bottom: 3.5rem;
+    }*/
+    /*Code I added - End*/
+
+
+        ./*page-footer :hover {
+            font-size: larger;
+        }*/
 }

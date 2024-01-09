@@ -16,7 +16,7 @@ namespace Lexicon_LMS.Server.Models.Entities
 
 
         //Navigation Properties
-        public Activities Activity { get; set; } = new Activities();
-        public ApplicationUser Student { get; set; } = new ApplicationUser();
+        public Activities? Activity { get; set; } = null!;
+        public ApplicationUser? Student { get; set; } = null!;
     }
 }

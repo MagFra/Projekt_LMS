@@ -21,13 +21,13 @@ namespace Lexicon_LMS.Server.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IModuleService _moduleService;
-        //private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
 
-        public ModulesController(ApplicationDbContext context, IModuleService moduleService)//, IMapper mapper)
+        public ModulesController(ApplicationDbContext context, IModuleService moduleService, IMapper mapper)
         {
             _context = context;
             _moduleService = moduleService;
-            //_mapper = mapper;
+            _mapper = mapper;
         }
 
         // GET: api/Modules
@@ -38,21 +38,24 @@ namespace Lexicon_LMS.Server.Controllers
             {
                 return NotFound();
             }
-            return await _context.module.ToListAsync();
+
+            //var result = await _context.module.Select(m => new ModuleDTO
+            //{
+            //    Id = m.Id,
+            //    CourseId = m.CourseId,
+            //    Name = m.Name!,
+            //    Description = m.Description!,
+            //    StartDate = m.StartDate,
+            //    LengthOfDays = m.LengthOfDays
+            //}).ToListAsync();
+
+            //var result = await _moduleService.GetModuleListAsync();
+
+            var result = await _context.module.ToListAsync();
+
+            return Ok(result);
         }
-
-
-        // GET: api/Modules
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<ModuleDTO>>> Getmodule()
-        //{
-        //    if (_context.module == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var test = await _moduleService.GetModuleListAsync();
-        //    return Ok(test);
-        //}
+       
 
 
         // GET: api/Modules/5
@@ -65,43 +68,49 @@ namespace Lexicon_LMS.Server.Controllers
           }
             var @module = await _context.module.FindAsync(id);
 
+            //var @module = await _moduleService.GetModuleAsync(id);
+
             if (@module == null)
             {
                 return NotFound();
             }
-
-            return @module;
+            
+            return Ok(@module);
         }
 
         // PUT: api/Modules/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModule(int id, Module @module)
+        public async Task<IActionResult> PutModule(int id, ModuleForUpdateDTO @module)
         {
             if (id != @module.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(@module).State = EntityState.Modified;
+            var resul = await _moduleService.UpdateModuleAssync(id, @module);
+            return resul ? Ok() : NotFound();
+            //var result = _mapper.Map<Module>(@module);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ModuleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //_context.Entry(result).State = EntityState.Modified;
 
-            return NoContent();
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!ModuleExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return NoContent();
         }
 
         //POST: api/Modules
