@@ -185,7 +185,8 @@ namespace Lexicon_LMS.Server.Migrations
                         name: "FK_module_courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "courses",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
