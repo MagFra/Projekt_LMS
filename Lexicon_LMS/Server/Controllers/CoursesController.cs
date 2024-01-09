@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Lexicon_LMS.Shared.Domain.CoursesDTOs;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+using Lexicon_LMS.Shared.Domain.UsersDTOs;
 
 namespace Lexicon_LMS.Server.Controllers
 {
@@ -35,14 +38,33 @@ namespace Lexicon_LMS.Server.Controllers
         }
 
         // GET: api/Courses/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Courses>> GetCourse(int id)
+        //{
+        //  if (_context.courses == null)
+        //  {
+        //      return NotFound();
+        //  }
+        //    var course = await _context.courses.FindAsync(id);
+
+        //    if (course == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return course;
+        //}
+
+
+        // GET: api/Courses/5
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Courses>> GetCourse(int id)
         {
-          if (_context.courses == null)
-          {
-              return NotFound();
-          }
-            var course = await _context.courses.FindAsync(id);
+            var course = await _context.courses
+                .Include(c => c.ModuleList)
+                .Include(c => c.StudentList)
+                .FirstOrDefaultAsync(c => c.Id == id);
 
             if (course == null)
             {
@@ -51,7 +73,6 @@ namespace Lexicon_LMS.Server.Controllers
 
             return course;
         }
-
         // PUT: api/Courses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

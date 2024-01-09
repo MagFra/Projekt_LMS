@@ -358,7 +358,7 @@ namespace Lexicon_LMS.Server.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LengthOfDays")
+                    b.Property<int>("LengthOfDays")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
