@@ -14,7 +14,7 @@ namespace Lexicon_LMS.Server.Controllers
 {
     [Route("api/courses")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class CoursesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -56,6 +56,7 @@ namespace Lexicon_LMS.Server.Controllers
         // PUT: api/Courses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Teacher")]
         public async Task<IActionResult> PutCourse(int id, Courses course)
         {
             if (id != course.Id)
@@ -87,6 +88,7 @@ namespace Lexicon_LMS.Server.Controllers
         // POST: api/Courses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Teacher")]
         public async Task<ActionResult<Courses>> PostCourse(Courses course)
         {
           if (_context.courses == null)
@@ -101,6 +103,7 @@ namespace Lexicon_LMS.Server.Controllers
 
         // DELETE: api/Courses/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Teacher")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
             if (_context.courses == null)
