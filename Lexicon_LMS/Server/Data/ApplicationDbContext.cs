@@ -27,5 +27,7 @@ namespace Lexicon_LMS.Server.Data
             builder.Entity<Assignments>().HasKey(a => new { a.ActivityId, a.ApplicationUserId });
         }
 
+        public DbSet<Lexicon_LMS.Server.Models.Entities.ActivityType> ActivityType { get; set; } = default!;
+
     }
 }
