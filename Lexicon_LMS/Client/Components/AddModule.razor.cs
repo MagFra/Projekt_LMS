@@ -1,4 +1,4 @@
-﻿using Lexicon_LMS.Shared.Domain.CoursesDTOs;
+﻿using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 
@@ -13,14 +13,14 @@ public partial class AddModule
 
     private string? ErrorMessage;
 
-    private CourseDTO? newModule = new CourseDTO()!;
+    private ModuleDTO? newModule = new ModuleDTO()!;
    
 
     private async Task AddNewModule()
     {
         try
         {
-            // Send a POST request to create the new course
+            // Send a POST request to create the new module
             using var response = await HttpClient?.PostAsJsonAsync("/api/Modules", newModule)!;
 
             if (!response.IsSuccessStatusCode)
@@ -31,10 +31,10 @@ public partial class AddModule
                 return;
             }
 
-            // Convert response data to CourseDTO object
-            newModule = await response.Content.ReadFromJsonAsync<CourseDTO>();
+            // Convert response data to ModuleDTO object
+            newModule = await response.Content.ReadFromJsonAsync<ModuleDTO>();
 
-            // Redirect to CourseOverview page after successful creation
+            // Redirect to ModuleOverview page after successful creation
             NavigationManager?.NavigateTo("/listofmodules");
         }
         catch (Exception exception)
