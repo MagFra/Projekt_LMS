@@ -59,7 +59,7 @@ namespace Lexicon_LMS.Server.Controllers
         // GET: api/Courses/5
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Courses>> GetCourse(int id)
+        public async Task<ActionResult<CourseDTO>> GetCourse(int id)
         {
             var course = await _context.courses
                 .Include(c => c.ModuleList)
@@ -71,8 +71,21 @@ namespace Lexicon_LMS.Server.Controllers
                 return NotFound();
             }
 
-            return course;
+            var courseDTO = new CourseDTO
+            {
+                Id = course.Id,
+                Name = course.Name,
+                Description = course.Description,
+                StartDate = course.StartDate,
+                LengthDays = course.LengthDays,
+                LastApplicationDay = course.LastApplicationDay,
+                ModuleList = course.ModuleList!.Select(m => new ModuleDTO { Id = m.Id, Name = m.Name, Description = m.Description, StartDate = m.StartDate, LengthOfDays = m.LengthOfDays}).ToList(),
+                StudentList = course.StudentList!.Select(s => new UserDTO { Id = s.Id, UserName = s.UserName!, FirstName = s.FirstName, LastName = s.LastName, EmailConfirmed = s.EmailConfirmed }).ToList()
+            };
+
+            return courseDTO;
         }
+
         // PUT: api/Courses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
