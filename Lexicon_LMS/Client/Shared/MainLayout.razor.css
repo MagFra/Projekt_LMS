@@ -105,8 +105,8 @@ main {
         bottom: 0;
         color: black;
         text-align: center;
-        left: 150px;
-        width: calc(100vw - 150px);
+        left: 150px;                  /*vänstermenyn är 150 bred*/
+        width: calc(100vw - 150px);   /*bredden på footern är sidans bredd minus bredden på vänstermenyn*/
         
         font-size: smaller;
         font-style: oblique;
