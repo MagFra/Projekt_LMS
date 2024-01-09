@@ -1,6 +1,6 @@
 ﻿<h4>Course Information</h4>
 
-@* Course: @CourseInfo *@
+@* Course: @Courses *@
 
 <table class="table">
 	<thead>
@@ -12,16 +12,16 @@
 		</tr>
 	</thead>
 
-<tbody>
-@foreach(var module in Module!)
+@* <tbody>
+@foreach(var module in Courses)
 {
 	<tr>			
 		<th>@module.Name</th>
 		<th>@module.Description</th>
 		<th>@module.StartDate</th>
-		<th>@module.LengthOfDays</th>
+		<th>@module.LengthDays</th>
 		</tr>
 }
-</tbody>
+</tbody> *@
 
 </table>

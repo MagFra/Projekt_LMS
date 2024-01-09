@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lexicon_LMS.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ActivityTypesController : ControllerBase
+	[Authorize]
+	public class ActivityTypesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
@@ -53,7 +55,8 @@ namespace Lexicon_LMS.Server.Controllers
         // PUT: api/ActivityTypes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutActivityType(int id, ActivityType activityType)
+		[Authorize(Roles = "Teacher")]
+		public async Task<IActionResult> PutActivityType(int id, ActivityType activityType)
         {
             if (id != activityType.Id)
             {
@@ -84,7 +87,8 @@ namespace Lexicon_LMS.Server.Controllers
         // POST: api/ActivityTypes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ActivityType>> PostActivityType(ActivityType activityType)
+		[Authorize(Roles = "Teacher")]
+		public async Task<ActionResult<ActivityType>> PostActivityType(ActivityType activityType)
         {
           if (_context.ActivityType == null)
           {
@@ -98,7 +102,8 @@ namespace Lexicon_LMS.Server.Controllers
 
         // DELETE: api/ActivityTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteActivityType(int id)
+		[Authorize(Roles = "Teacher")]
+		public async Task<IActionResult> DeleteActivityType(int id)
         {
             if (_context.ActivityType == null)
             {

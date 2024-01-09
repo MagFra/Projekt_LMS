@@ -12,12 +12,14 @@ using Lexicon_LMS.Server.Models.Profiles;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lexicon_LMS.Server.Controllers
 {
     [Route("api/modules")]
     [ApiController]
-    public class ModulesController : ControllerBase
+	[Authorize]
+	public class ModulesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly IModuleService _moduleService;
@@ -81,7 +83,8 @@ namespace Lexicon_LMS.Server.Controllers
         // PUT: api/Modules/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModule(int id, ModuleForUpdateDTO @module)
+		[Authorize(Roles = "Teacher")]
+		public async Task<IActionResult> PutModule(int id, ModuleForUpdateDTO @module)
         {
             if (id != @module.Id)
             {
@@ -116,7 +119,8 @@ namespace Lexicon_LMS.Server.Controllers
         //POST: api/Modules
         //To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Module>> PostModule(ModuleForCreationDTO @module)
+		[Authorize(Roles = "Teacher")]
+		public async Task<ActionResult<Module>> PostModule(ModuleForCreationDTO @module)
         {
             if (_context.module == null)
             {
@@ -133,7 +137,8 @@ namespace Lexicon_LMS.Server.Controllers
 
         // DELETE: api/Modules/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteModule(int id)
+		[Authorize(Roles = "Teacher")]
+		public async Task<IActionResult> DeleteModule(int id)
         {
             if (_context.module == null)
             {
