@@ -138,27 +138,34 @@ namespace Lexicon_LMS.Server.Data
 
                 // Add modules for the course
                 var modules = new (string, string, DateTime, int)[] {
-                    ("HTML", "HTML description", startDate, 10),
-                    ("CSS", "CSS description", startDate.AddDays(10), 15),
-                   
+                    ("Module 1", "Module 1 description", startDate, 10),
+                    ("Module 2", "Module 2 description", startDate.AddDays(10), 15),
                 };
 
-                        foreach (var module in modules)
-                        {
-                            (var moduleName, var moduleDescription, var moduleStartDate, var moduleLengthDays) = module;
+                foreach (var module in modules)
+                {
+                    (var moduleName, var moduleDescription, var moduleStartDate, var moduleLengthDays) = module;
 
-                            await db.module.AddAsync(new Module
-                            {
-                                CourseId = newCourse.Id, // Assign the course ID to the module's CourseId property
-                                Name = moduleName,
-                                Description = moduleDescription,
-                                StartDate = moduleStartDate,
-                                LengthOfDays = moduleLengthDays
-                            });
-                        }
-                    }
-                    await db.SaveChangesAsync();
+                    var newModule = new Module
+                    {
+                        CourseId = newCourse.Id, // Assign the course ID to the module's CourseId property
+                        Name = moduleName,
+                        Description = moduleDescription,
+                        StartDate = moduleStartDate,
+                        LengthOfDays = moduleLengthDays
+                    };
+
+                    // Add the module to the course's ModuleList
+                    newCourse.ModuleList ??= new List<Module>();
+                    newCourse.ModuleList.Add(newModule);
+
+                    await db.module.AddAsync(newModule);
                 }
+            }
+            await db.SaveChangesAsync();
+        }
+
+
 
     }
 }

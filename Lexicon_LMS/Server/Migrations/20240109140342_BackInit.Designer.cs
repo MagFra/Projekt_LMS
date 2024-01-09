@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lexicon_LMS.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240109135025_SeedModules")]
-    partial class SeedModules
+    [Migration("20240109140342_BackInit")]
+    partial class BackInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -565,7 +565,8 @@ namespace Lexicon_LMS.Server.Migrations
                 {
                     b.HasOne("Lexicon_LMS.Server.Models.Entities.Courses", "Course")
                         .WithMany("ModuleList")
-                        .HasForeignKey("CourseId");
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Course");
                 });
