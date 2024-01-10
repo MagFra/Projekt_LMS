@@ -164,10 +164,8 @@ namespace Lexicon_LMS.Server.Data
 
             foreach (var course in courses)
             {
-                (description, lastApplicationDay, lengthDays, name, startDate) = course;
-
-                // Add the course
-                var newCourse = new Courses
+                (description, lastApplicationDay, lenthDays, name, startDate) = course;
+                await db.courses.AddAsync(new Courses
                 {
                     Description = description,
                     Name = name,
