@@ -21,8 +21,8 @@ namespace Lexicon_LMS.Server.Services
         }
         public async Task<IEnumerable<ModuleDTO>> GetModuleListAsync(int? corseId = null)
         {
-            var modules = (corseId is null) ? await _db.module.Include(m => m.Activities).ToListAsync()
-                : await _db.module.Where(m => m.CourseId == corseId).Include(m => m.Activities).ToListAsync();
+            var modules = (corseId is null) ? await _db.module.Include(m => m.Activities).Include(m => m.Course).ToListAsync()
+                : await _db.module.Where(m => m.CourseId == corseId).Include(m => m.Activities).Include(m => m.Course).ToListAsync();
 
             //<-- Ett försök med lambda, utan mapper.
             var dto = modules.Select(m => new ModuleDTO
@@ -31,16 +31,18 @@ namespace Lexicon_LMS.Server.Services
                 Name = m.Name,
                 Description = m.Description,
                 StartDate = m.StartDate,
-                LengthOfDays = m.LengthOfDays,  // Saknar Activities.
+                LengthOfDays = m.LengthOfDays,
+                Activities = m.Activities!.Select(a => new ActivityLimitedDTO { Id = a.Id, Name = a.Name, StartDate = a.StartDate, LenthDays = a.LenthDays }).ToList(),
+                Course = new CourseLimitedDTO { Id = m.Course!.Id, Name = m.Course.Name, StartDate = m.Course.StartDate, LengthDays = m.Course.LengthDays, }
             }).ToList();
             // slut på försöket -->
 
             // <-- En versiom med foreach och mapper. (Osäker på om allt mappas.)
-            List<ModuleDTO> modulesDTO = new List<ModuleDTO>();
-            foreach (var module in modules) { modulesDTO.Add(_mapper.Map<ModuleDTO>(module)); }
+            //List<ModuleDTO> modulesDTO = new List<ModuleDTO>();
+            //foreach (var module in modules) { modulesDTO.Add(_mapper.Map<ModuleDTO>(module)); }
             // Slut på versionen. -->
 
-            return modulesDTO; //new ModuleListDTO { ListOfModules = modulesDTO};
+            return dto; //new ModuleListDTO { ListOfModules = modulesDTO};
         }
 
         public async Task<ModuleDTO> GetModuleAsync(int moduleId)

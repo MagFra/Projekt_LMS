@@ -51,9 +51,9 @@ namespace Lexicon_LMS.Server.Controllers
             //    LengthOfDays = m.LengthOfDays
             //}).ToListAsync();
 
-            //var result = await _moduleService.GetModuleListAsync();
+            var result = await _moduleService.GetModuleListAsync();
 
-            var result = await _context.module.ToListAsync();
+            //var result = await _context.module.ToListAsync();
 
             return Ok(result);
         }
