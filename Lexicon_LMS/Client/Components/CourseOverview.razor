@@ -42,7 +42,7 @@ else if (courses.Any())
                             class="btn btn-primary m-1">Edit</a>   
                     </td>
                     <td>
-                        <button class="btn btn-danger" @onclick="() => Delete()">Delete</button>
+                         <button class="btn btn-danger" @onclick="() => Delete(course?.Id)">Delete</button>
                     </td>
                 </tr>
             }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lexicon_LMS.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240110085036_UpdateSeedData")]
-    partial class UpdateSeedData
+    [Migration("20240110130657_Update")]
+    partial class Update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

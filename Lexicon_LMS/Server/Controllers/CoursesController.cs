@@ -135,18 +135,44 @@ namespace Lexicon_LMS.Server.Controllers
         }
 
         // DELETE: api/Courses/5
+        //[HttpDelete("{id}")]
+        //[Authorize(Roles = "Teacher")]
+        //public async Task<IActionResult> DeleteCourse(int id)
+        //{
+        //    if (_context.courses == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var course = await _context.courses.FindAsync(id);
+        //    if (course == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _context.courses.Remove(course);
+        //    await _context.SaveChangesAsync();
+
+        //    return NoContent();
+        //}
+
+        // DELETE: api/Courses/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "Teacher")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
-            if (_context.courses == null)
-            {
-                return NotFound();
-            }
-            var course = await _context.courses.FindAsync(id);
+            var course = await _context.courses
+                .Include(c => c.StudentList)  // Include related users
+                .FirstOrDefaultAsync(c => c.Id == id);
+
             if (course == null)
             {
                 return NotFound();
+            }
+
+            // Remove the course from related users
+            foreach (var user in course.StudentList)
+            {
+                user.CourseId = null; // Set CourseId to null or another valid value
             }
 
             _context.courses.Remove(course);

@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Lexicon_LMS.Shared.Domain.ModulesDTOs
+
+@attribute [Authorize]
+
+<PageTitle>Module List</PageTitle>
+
+<a href="@($"createmodule")" class="btn btn-outline-primary">Add new module</a>
+
+<h1>Module List</h1>
+
+@if (modules == null)
+{
+    <p>Loading....</p>
+}
+else if (modules.Any())
+{
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Course Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Length (Days)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var module in modules)
+            {
+                <tr>
+                    <td scope="row">@module?.CourseId</td>
+                    <td scope="row"><a href="@($"moduledetails/{module?.Id}")">@module?.Name</a></td>
+                    <td scope="row">@module?.Description</td>
+                    <td scope="row">@module?.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td scope="row">@module?.LengthOfDays</td>
+                    <td>
+                        <a href="@($"editmodule/{module?.Id}")" class="btn btn-primary m-1">Edit</a>
+                    </td>
+                    <td>
+                         <button class="btn btn-danger" @onclick="() => Delete(module?.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-warning">No modules available.</p>
+}
