@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Components;
 
 namespace Lexicon_LMS.Client.Services
 {
-    public class ModuleService : IModuleService
+    public class ModuleServiceClient : IModuleServiceClient
     {
         public static List<ModuleDTO> Modules { get; set; } = new List<ModuleDTO>();
-        public ModuleService()
+        public ModuleServiceClient()
         {
 
         }

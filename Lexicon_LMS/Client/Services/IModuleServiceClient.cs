@@ -3,7 +3,7 @@ using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 
 namespace Lexicon_LMS.Server.Services
 {
-    public interface IModuleService
+    public interface IModuleServiceClient
     {
         List<ModuleDTO> GetModules();
 
