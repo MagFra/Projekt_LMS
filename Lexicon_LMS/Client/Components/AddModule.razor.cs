@@ -13,7 +13,7 @@ public partial class AddModule
 
     private string? ErrorMessage;
 
-    private ModuleDTO newModule = new ModuleDTO()!;
+    private ModuleForCreationDTO newModule = new ModuleForCreationDTO()!;
    
     [Parameter]
     public int CourseId { get; set; }
@@ -36,7 +36,7 @@ public partial class AddModule
             }
 
             // Convert response data to ModuleDTO object
-            newModule = await response.Content.ReadFromJsonAsync<ModuleDTO>();
+            newModule = await response.Content.ReadFromJsonAsync<ModuleForCreationDTO>();
 
             // Redirect to ModuleOverview page after successful creation
             NavigationManager!.NavigateTo($"/coursedetails/{CourseId}");

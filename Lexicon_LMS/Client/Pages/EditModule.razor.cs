@@ -45,7 +45,7 @@ namespace Lexicon_LMS.Client.Pages
                 Module = await response.Content.ReadFromJsonAsync<ModuleDTO>();
 
                 // Redirect to ModuleOverview page after successful creation
-                NavigationManager!.NavigateTo($"/coursedetails/{Module!.CourseId}");
+                NavigationManager!.NavigateTo($"/coursedetails/{Module!.Course!.Id}");
             }
             catch (Exception exception)
             {
