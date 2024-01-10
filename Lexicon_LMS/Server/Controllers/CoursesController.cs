@@ -170,7 +170,7 @@ namespace Lexicon_LMS.Server.Controllers
             }
 
             // Remove the course from related users
-            foreach (var user in course.StudentList)
+            foreach (var user in course.StudentList!)
             {
                 user.CourseId = null; // Set CourseId to null or another valid value
             }

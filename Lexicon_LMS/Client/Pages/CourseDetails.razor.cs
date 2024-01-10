@@ -15,7 +15,7 @@ public partial class CourseDetails
     [Parameter]
     public int courseId { get; set; }
 
-    private CourseDTO? course;
+    private CourseDTO course = new CourseDTO();
 
     private string? ErrorMessage;
     protected override async Task OnInitializedAsync()

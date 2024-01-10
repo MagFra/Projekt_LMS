@@ -50,7 +50,7 @@ builder.Services.AddAutoMapper(typeof(CoursesMapperProfile));
 builder.Services.AddAutoMapper(typeof(ModulesMapperProfile));
 builder.Services.AddAutoMapper(typeof(UsersMapperProfile));
 
-builder.Services.AddScoped<IModuleService, ModuleService>();
+builder.Services.AddScoped<Lexicon_LMS.Server.Services.IModuleService, Lexicon_LMS.Server.Services.ModuleService>();
 
 //builder.Services.AddAuthentication()
 //    .AddIdentityServerJwt();

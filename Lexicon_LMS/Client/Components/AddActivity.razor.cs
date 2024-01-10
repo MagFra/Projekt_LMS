@@ -13,7 +13,7 @@ public partial class AddActivity
 
     private string? ErrorMessage;
 
-    private ActivityDTO? newActivity = new ActivityDTO()!;
+    private ActivityDTO newActivity = new ActivityDTO();
 
 
     private async Task AddNewActivity()
