@@ -3,6 +3,7 @@ using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
 using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 using Lexicon_LMS.Shared.Domain.ActivitiesDTOs;
+using Lexicon_LMS.Shared.Domain.CoursesDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,8 +31,7 @@ namespace Lexicon_LMS.Server.Services
                 Name = m.Name,
                 Description = m.Description,
                 StartDate = m.StartDate,
-                LengthOfDays = m.LengthOfDays,
-                CourseId = m.CourseId,  // Saknar Activities.
+                LengthOfDays = m.LengthOfDays,  // Saknar Activities.
             }).ToList();
             // slut på försöket -->
 
@@ -45,8 +45,29 @@ namespace Lexicon_LMS.Server.Services
 
         public async Task<ModuleDTO> GetModuleAsync(int moduleId)
         {
-            var module = await _db.module.Where(m => m.Id == moduleId).Include(m => m.Activities).FirstOrDefaultAsync();
-            return _mapper.Map<ModuleDTO>(module);
+            var module = await _db.module
+                .Where(m => m.Id == moduleId)
+                .Include(m => m.Activities)
+                .Include(m => m.Course)
+                .FirstOrDefaultAsync();
+
+            if (module == null) { return new ModuleDTO(); }
+
+            var c = module.Course;
+            var result = new ModuleDTO
+            {
+                Id = module.Id,
+                Name = module.Name,
+                Description = module.Description,
+                StartDate = module.StartDate,
+                LengthOfDays = module.LengthOfDays,
+                Activities = module.Activities!.Select(a => new ActivityLimitedDTO { Id = a.Id, Name = a.Name, StartDate = a.StartDate, LenthDays = a.LenthDays}).ToList(),
+                Course = new CourseLimitedDTO { Id = c!.Id, Name = c.Name, StartDate = c.StartDate, LengthDays = c.LengthDays,}
+            };
+
+            //var result2 = _mapper.Map<ModuleDTO>(module);
+
+            return result;
         }
 
         public async Task<ModuleDTO> AddModuleAsync(ModuleForCreationDTO dto)

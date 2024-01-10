@@ -18,7 +18,7 @@ public partial class CourseDelete
     [Parameter]
     public int CourseId { get; set; }
 
-    private CourseDTO? course = new CourseDTO();
+    private CourseDTO course = new CourseDTO();
 
     public string responseData = string.Empty;
 
@@ -49,7 +49,7 @@ private async Task Delete()
         {
         try
         {
-            var response = await Http.DeleteAsync($"/api/Courses/" + course.Id);
+            var response = await Http!.DeleteAsync($"/api/Courses/" + course.Id);
             if (response.IsSuccessStatusCode)
             {
                 NavigationManager!.NavigateTo($"/ListOfCourses");

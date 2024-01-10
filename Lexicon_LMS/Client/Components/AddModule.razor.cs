@@ -13,7 +13,7 @@ public partial class AddModule
 
     private string? ErrorMessage;
 
-    private ModuleDTO? newModule = new ModuleDTO()!;
+    private ModuleDTO newModule = new ModuleDTO();
    
 
     private async Task AddNewModule()
