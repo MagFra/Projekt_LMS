@@ -37,14 +37,12 @@ else if (courses.Any())
                     <td scope="row">@course?.StartDate.ToString("yyyy-MM-dd")</td>
                     <td scope="row">@course?.LengthDays</td>
                     <td scope="row">@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
+                    <td>  
+                        <a href="@($"editcourse/{course?.Id}")"
+                            class="btn btn-primary m-1">Edit</a>   
+                    </td>
                     <td>
-                        <span>
-                            <a href="@($"editcourse/{course?.Id}")"
-                               class="btn btn-primary m-1">Edit</a>
-                        </span>
-                        <span>
-                            <button class="btn btn-danger" @onclick="() => Delete(course!.Id)">Delete</button>
-                        </span>
+                        <button class="btn btn-danger" @onclick="() => Delete()">Delete</button>
                     </td>
                 </tr>
             }
