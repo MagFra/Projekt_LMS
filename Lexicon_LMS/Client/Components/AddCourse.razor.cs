@@ -14,6 +14,7 @@ public partial class AddCourse
     private string? ErrorMessage;
 
     private CourseDTO? newCourse = new CourseDTO()!;
+
    
 
     private async Task AddNewCourse()

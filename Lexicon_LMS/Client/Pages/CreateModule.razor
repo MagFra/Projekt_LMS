@@ -1,5 +1,10 @@
-﻿@page "/createmodule"
+﻿@page "/createmodule/{CourseId}"
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
 
-<AddModule></AddModule>
+<AddModule CourseId="@CourseId"></AddModule>
+
+@code{
+    [Parameter]
+    public int CourseId { get; set; }
+}
