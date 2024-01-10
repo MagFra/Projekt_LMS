@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
+
+<h3>Update Activity</h3>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMessage
+    </div>
+}
+
+<EditForm Model="@Activity" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit=@InvalidFormSubmitted>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="Activity!.Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <InputText id="Description" @bind-Value="Activity.Description" class="form-control" />
+        <ValidationMessage For="@(() => Activity.Description)" />
+    </div>
+
+    <div class="form-group">
+        <label for="StartDate">Start Date:</label>
+        <InputDate id="StartDate" @bind-Value="Activity.StartDate" class="form-control" />
+        <ValidationMessage For="@(() => Activity.StartDate)" />
+    </div>
+
+    <div class="form-group">
+        <label for="LengthDays">Length (Days):</label>
+        <InputNumber id="LengthDays" @bind-Value="Activity.LengthDays" class="form-control" />
+        <ValidationMessage For="@(() => Activity.LengthDays)" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Save activity</button>
+
+
+    <br />
+    <a href="@($"createactivity/")"
+       class="btn btn-primary m-1">Create Activity</a>
+</EditForm>
+

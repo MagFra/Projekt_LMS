@@ -1,0 +1,7 @@
+﻿@page "/editactivity/{ActivityId:int}"
+
+@inherits UpdateActivity
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<UpdateActivity ActivityId="ActivityId"></UpdateActivity>
