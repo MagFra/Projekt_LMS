@@ -1,0 +1,78 @@
+﻿@page "/coursedetails/{courseId:int}"
+
+<h3>Course Details</h3>
+
+@if (course != null)
+{
+    <h4>@course.Name</h4>
+    <section>
+        <h5><strong>Modules:</strong></h5>
+   
+        <div>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ModuleId</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">Length (Days)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var module in course.ModuleList)
+                    {
+                        <tr>
+                            <td scope="row">@module?.Id</td>
+                            <td scope="row">@module?.Name</td>
+                            <td scope="row">@module?.Description</td>
+                            <td scope="row">@module?.StartDate</td>
+                            <td scope="row">@module?.LengthOfDays</td>
+                            <td>
+                                <a href="@($"editmodule/{module?.Id}")"
+                                   class="btn btn-primary m-1">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <a href="@($"createCourse")" class="btn btn-outline-primary">Add new course</a>
+    </section>
+    <section>
+        <h5>Students:</h5>
+        <div>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">StudentId</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Full Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in course.StudentList!)
+                    {
+                        <tr>
+                            <td scope="row">@student?.Id</td>
+                            <td scope="row">@student?.UserName</td>
+                            <td scope="row">@student?.EmailConfirmed</td>
+                            <td scope="row">@(student?.FirstName + student?.LastName)</td>
+                            <td>
+                                <a href="@($"editStudent/{student?.Id}")"
+                                   class="btn btn-primary m-1">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+}
+else
+{
+    <p>Course not found.</p>
+}
+
+<a href="@($"ListOfCourses")" class="btn btn-outline-primary">Back to Course list</a>

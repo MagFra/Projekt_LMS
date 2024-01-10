@@ -1,0 +1,47 @@
+﻿@page "/coursedelete/{CourseId:int}"
+
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Lexicon_LMS.Shared.Domain
+
+@attribute [Authorize(Roles = "Teacher")]
+
+<h1>Delete Course</h1>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMessage
+    </div>
+}
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Course Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Length (Days)</th>
+            <th scope="col">Last Application Day</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row">@course.Id</td>
+            <td scope="row">@course.Name</td>
+            <td scope="row">@course.Description</td>
+            <td scope="row">@course.StartDate.ToString("yyyy-MM-dd")</td>
+            <td scope="row">@course.LengthDays</td>
+            <td scope="row">@course.LastApplicationDay.ToString("yyyy-MM-dd")</td>
+            <td>
+                <a href="@($"editcourse/{course.Id}")" class="btn btn-primary m-1">Edit</a>
+            </td>
+            <td>
+                <button class="btn btn-danger" @onclick="Delete">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+}
+<a href="@($"ListOfDevices")" class="btn btn-outline-primary">Back to Course list</a>

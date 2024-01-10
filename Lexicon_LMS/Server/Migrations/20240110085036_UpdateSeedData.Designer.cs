@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lexicon_LMS.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240108082540_Init fresh restart")]
-    partial class Initfreshrestart
+    [Migration("20240110085036_UpdateSeedData")]
+    partial class UpdateSeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -361,7 +361,7 @@ namespace Lexicon_LMS.Server.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LengthOfDays")
+                    b.Property<int>("LengthOfDays")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -565,7 +565,8 @@ namespace Lexicon_LMS.Server.Migrations
                 {
                     b.HasOne("Lexicon_LMS.Server.Models.Entities.Courses", "Course")
                         .WithMany("ModuleList")
-                        .HasForeignKey("CourseId");
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Course");
                 });

@@ -1,9 +1,24 @@
 ﻿@page "/"
-
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject NavigationManager Navigation
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+    <Authorized>
+        <h1>Välkommen till Lexicon LMS, @context.User.Identity?.Name!</h1>
+        
+        <div>Navigera menyn till vänster för att hitta det du söker.</div>
+        @* <a href="authentication/profile">Hej, @context.User.Identity?.Name!</a> *@
+    </Authorized>
+    <NotAuthorized>
+        <h1>Välkommen till Lexicon LMS</h1>
+        <div>För att använda denna sida behöver du logga in.</div>
+        @* <SurveyPrompt Title="" /> *@
+        <button class="btn btn-outline-light m-2">
+        <a href="authentication/login">Log in</a>
+        </button>
+    </NotAuthorized>
+</AuthorizeView>

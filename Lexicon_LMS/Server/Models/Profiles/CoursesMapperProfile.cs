@@ -11,6 +11,8 @@ namespace Lexicon_LMS.Server.Models.Profiles
         {
             CreateMap<Courses, CourseDTO>();
 
+            CreateMap<Courses, CourseLimitedDTO>();
+
             //CreateMap<IEnumerable<Courses>, CourseListDTO>()
             //    .ForMember(dest => dest.ListOfCourses, from => from.MapFrom(c => c.ToList()));
         }
