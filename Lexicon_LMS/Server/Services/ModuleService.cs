@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lexicon_LMS.Server.Services
 {
-    public class ModuleService : IModuleService
+    public class ModuleService : Lexicon_LMS.Server.Services.IModuleService
     {
         private readonly ApplicationDbContext _db;
         private readonly IMapper _mapper;

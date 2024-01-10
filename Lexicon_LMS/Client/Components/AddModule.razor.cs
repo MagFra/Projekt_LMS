@@ -39,7 +39,7 @@ public partial class AddModule
             newModule = await response.Content.ReadFromJsonAsync<ModuleDTO>();
 
             // Redirect to ModuleOverview page after successful creation
-            NavigationManager.NavigateTo($"/coursedetails/{CourseId}");
+            NavigationManager!.NavigateTo($"/coursedetails/{CourseId}");
         }
         catch (Exception exception)
         {

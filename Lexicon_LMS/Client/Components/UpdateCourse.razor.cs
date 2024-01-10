@@ -52,7 +52,7 @@ public partial class UpdateCourse
         }
     }
 
-    private async Task InvalidFormSubmitted()
+    private void InvalidFormSubmitted()
     {
      
       ErrorMessage = "Failed to update the course!";
