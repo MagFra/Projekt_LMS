@@ -16,7 +16,7 @@ builder.Services.AddHttpClient("Lexicon_LMS.ServerAPI", client => client.BaseAdd
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("Lexicon_LMS.ServerAPI"));
 
 builder.Services.AddScoped<ICourseService, CourseService>();
-builder.Services.AddScoped<IModuleService, ModuleService>();
+builder.Services.AddScoped<IModuleServiceClient, ModuleServiceClient>();
 
 builder.Services.AddApiAuthorization();
 
