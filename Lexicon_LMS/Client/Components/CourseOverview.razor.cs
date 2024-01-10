@@ -10,6 +10,13 @@ namespace Lexicon_LMS.Client.Components
         [Inject]
         private HttpClient? Http { get; set; }
 
+        [Inject]
+        private NavigationManager? NavigationManager { get; set; }
+
+        [Parameter]
+
+        public string? CourseId { get; set; }
+
         private List<CourseDTO>? courses;
         private string? ErrorMessage;
 
@@ -32,6 +39,22 @@ namespace Lexicon_LMS.Client.Components
             catch (Exception exception)
             {
                 ErrorMessage = exception.Message;
+            }
+        }
+
+        private async Task Delete(int CourseId)
+        {
+            try
+            {
+                await Http!.DeleteAsync($"api/Courses/{CourseId}");
+
+                // Refresh the current page to reflect the updated list
+                NavigationManager!.NavigateTo(NavigationManager.Uri, forceLoad: true);
+            }
+            catch (Exception ex)
+            {
+                // Handle the error
+                ErrorMessage = $"Error deleting course: {ex.Message}";
             }
         }
 

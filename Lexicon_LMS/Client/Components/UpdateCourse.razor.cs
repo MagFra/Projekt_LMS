@@ -58,4 +58,6 @@ public partial class UpdateCourse
       ErrorMessage = "Failed to update the course!";
             
     }
+
+
 }
