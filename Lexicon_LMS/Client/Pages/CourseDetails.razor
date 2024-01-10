@@ -5,6 +5,8 @@
 @if (course != null)
 {
     <h4>@course.Name</h4>
+    <a href="@($"editcourse/{courseId}")" class="btn btn-primary m-1">Edit</a>
+    <a href="@($"deletecourse/{courseId}")" class="btn btn-primary m-1">Delete</a>
     <section>
         <h5><strong>Modules:</strong></h5>
    
@@ -37,7 +39,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="@($"createmodule")" class="btn btn-outline-primary">Add new module</a>
+        <a href="@($"createmodule/{courseId}")" class="btn btn-primary m-1">Add new module</a>
     </section>
     <section>
         <h5>Students:</h5>

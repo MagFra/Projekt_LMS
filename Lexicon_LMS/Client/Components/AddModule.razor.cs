@@ -13,13 +13,17 @@ public partial class AddModule
 
     private string? ErrorMessage;
 
-    private ModuleDTO? newModule = new ModuleDTO()!;
-   
+    private ModuleDTO newModule = new ModuleDTO()!;
+
+    [Parameter]
+    public int CourseId { get; set; }
+
 
     private async Task AddNewModule()
     {
         try
         {
+            newModule.CourseId = CourseId;
             // Send a POST request to create the new module
             using var response = await HttpClient?.PostAsJsonAsync("/api/Modules", newModule)!;
 
@@ -35,11 +39,11 @@ public partial class AddModule
             newModule = await response.Content.ReadFromJsonAsync<ModuleDTO>();
 
             // Redirect to ModuleOverview page after successful creation
-            NavigationManager?.NavigateTo("/listofmodules");
+            NavigationManager.NavigateTo($"/coursedetails/{CourseId}");
         }
         catch (Exception exception)
         {
-            ErrorMessage = exception.Message;
+            ErrorMessage = $"Could not add module! {exception.Message})";
         }
     }
 }
