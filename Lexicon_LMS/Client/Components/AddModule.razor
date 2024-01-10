@@ -37,3 +37,9 @@
     <button type="submit" class="btn btn-primary">Add module</button>
 </EditForm>
 
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMessage
+    </div>
+}

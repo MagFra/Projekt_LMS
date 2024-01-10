@@ -14,7 +14,7 @@ public partial class AddModule
     private string? ErrorMessage;
 
     private ModuleDTO newModule = new ModuleDTO()!;
-
+   
     [Parameter]
     public int CourseId { get; set; }
 
