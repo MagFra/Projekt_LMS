@@ -112,38 +112,5 @@ main {
         font-style: oblique;
     }
 
-    /*Code I added - Start*/
-    /*.bottom-row {
-        background-color: #f7f7f7;
-        border-top: 1px solid #d6d5d5;
-        height: 3.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        position: absolute;
-        bottom: 0;
-        width: 100vw;
-    }*/
-
-        /*Select all a elements where parent is a .bottom-row*/
-        /*.bottom-row > a {
-            display: flex;
-            color: rgb(33, 37, 41);*/
-            /*color and text-decor used to not show it as link*/
-            /*text-decoration: none;*/
-            /*fontsize is the same copied from navbar-brand style inside NavMenu.razor.css*/
-            /*font-size: 1.1rem;
-        }*/
-
-    /*Optionally this selector will also work: main article.content*/
-    /*main > .content {
-        overflow-y: auto;
-        margin-bottom: 3.5rem;
-    }*/
-    /*Code I added - End*/
-
-
-        ./*page-footer :hover {
-            font-size: larger;
-        }*/
+   
 }
