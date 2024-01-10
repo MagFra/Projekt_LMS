@@ -66,7 +66,11 @@ namespace Lexicon_LMS.Server.Data
 
             //##-< Seed Activities >-##########################################################
             // activities = (Name, Descrition, StartDate, LenthDays, ModuleId, ActivityTypeId)
+<<<<<<< HEAD
             var activities = new (string, string, DateTime, int, int, int)[] { 
+=======
+            var activities = new (string, string, DateTime, int, int, int)[] {
+>>>>>>> courseoverview
                 ("Test1", "jklfgheug jkgh jhg jgh dfgdf ioåhg", DateTime.Parse("2024-01-12"), 14, 1, 1),
                 ("Test2", "jksdfh shuj fgkjh fjhfgh sdfjh ihd", DateTime.Parse("2024-01-12"), 14, 2, 1)
             };
@@ -188,7 +192,11 @@ namespace Lexicon_LMS.Server.Data
 
             foreach (var module in modules)
             {
+<<<<<<< HEAD
                 (courseId,name,description,startDate,lengthOfDays) = module;
+=======
+                (courseId, name, description, startDate, lengthOfDays) = module;
+>>>>>>> courseoverview
                 await db.module.AddAsync(new Module
                 {
                     CourseId = courseId,

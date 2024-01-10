@@ -358,7 +358,7 @@ namespace Lexicon_LMS.Server.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LengthOfDays")
+                    b.Property<int>("LengthOfDays")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -562,7 +562,8 @@ namespace Lexicon_LMS.Server.Migrations
                 {
                     b.HasOne("Lexicon_LMS.Server.Models.Entities.Courses", "Course")
                         .WithMany("ModuleList")
-                        .HasForeignKey("CourseId");
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Course");
                 });
