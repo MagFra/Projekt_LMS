@@ -2,6 +2,7 @@
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
 using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+using Lexicon_LMS.Shared.Domain.ActivitiesDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,8 +23,22 @@ namespace Lexicon_LMS.Server.Services
             var modules = (corseId is null) ? await _db.module.Include(m => m.Activities).ToListAsync()
                 : await _db.module.Where(m => m.CourseId == corseId).Include(m => m.Activities).ToListAsync();
 
+            //<-- Ett försök med lambda, utan mapper.
+            var dto = modules.Select(m => new ModuleDTO
+            {
+                Id = m.Id,
+                Name = m.Name,
+                Description = m.Description,
+                StartDate = m.StartDate,
+                LengthOfDays = m.LengthOfDays,
+                CourseId = m.CourseId,  // Saknar Activities.
+            }).ToList();
+            // slut på försöket -->
+
+            // <-- En versiom med foreach och mapper. (Osäker på om allt mappas.)
             List<ModuleDTO> modulesDTO = new List<ModuleDTO>();
             foreach (var module in modules) { modulesDTO.Add(_mapper.Map<ModuleDTO>(module)); }
+            // Slut på versionen. -->
 
             return modulesDTO; //new ModuleListDTO { ListOfModules = modulesDTO};
         }
