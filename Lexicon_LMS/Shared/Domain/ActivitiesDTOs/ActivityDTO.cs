@@ -15,7 +15,7 @@ namespace Lexicon_LMS.Shared.Domain.ActivitiesDTOs
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }
-        public int LenthDays { get; set; }
+        public int LengthDays { get; set; }
 
 
         // Foreign key
