@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Lexicon_LMS.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Update : Migration
+    public partial class Initfreshrestart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -176,7 +176,7 @@ namespace Lexicon_LMS.Server.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LengthOfDays = table.Column<int>(type: "int", nullable: false)
+                    LengthOfDays = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -185,8 +185,7 @@ namespace Lexicon_LMS.Server.Migrations
                         name: "FK_module_courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

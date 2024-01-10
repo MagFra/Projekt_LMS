@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
 using Lexicon_LMS.Shared.Domain.CoursesDTOs;
+using Lexicon_LMS.Client.Pages;
 
 
 namespace Lexicon_LMS.Client.Components;

@@ -54,9 +54,9 @@ public partial class UpdateCourse
 
     private void InvalidFormSubmitted()
     {
-     
-      ErrorMessage = "Failed to update the course!";
-            
+
+        ErrorMessage = "Failed to update the course!";
+
     }
 
 

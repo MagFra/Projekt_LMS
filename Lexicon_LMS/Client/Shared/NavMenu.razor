@@ -1,28 +1,11 @@
-﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject NavigationManager Navigation
-
-@using Microsoft.AspNetCore.Components.Authorization
-@inject AuthenticationStateProvider AuthenticationStateProvider
-
-<CascadingAuthenticationState>
-
-
-
-
-
-
-
-	@* --- Här ligger för inloggad användare ----------------------------------------------*@
-	<AuthorizeView>
-
-		<div class="top-row ps-3 navbar navbar-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="">&nbsp;&nbsp;&nbsp;&nbsp; LMS</a>
-				<button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-			</div>
-		</div>
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">&nbsp;&nbsp;&nbsp;&nbsp; LMS</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
 
 		<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
 			<nav class="flex-column">
@@ -81,16 +64,13 @@
 
 
 
-	@code {
-		private bool collapseNavMenu = true;
+@code {
+    private bool collapseNavMenu = true;
 
-		private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-		private void ToggleNavMenu()
-		{
-		collapseNavMenu = !collapseNavMenu;
-		}
-	}
-
-
-</CascadingAuthenticationState>
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

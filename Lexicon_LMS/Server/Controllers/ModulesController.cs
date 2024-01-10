@@ -62,15 +62,15 @@ namespace Lexicon_LMS.Server.Controllers
 
         // GET: api/Modules/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Module>> GetModule(int id)
+        public async Task<ActionResult<ModuleDTO>> GetModule(int id)
         {
           if (_context.module == null)
           {
               return NotFound();
           }
-            var @module = await _context.module.FindAsync(id);
+            //var @module = await _context.module.FindAsync(id);
 
-            //var @module = await _moduleService.GetModuleAsync(id);
+            var @module = await _moduleService.GetModuleAsync(id);
 
             if (@module == null)
             {
