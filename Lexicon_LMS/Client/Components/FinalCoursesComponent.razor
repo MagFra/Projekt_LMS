@@ -4,11 +4,11 @@
 
 @attribute [Authorize]
 
-<PageTitle>Course Overview</PageTitle>
+<PageTitle>Available Courses</PageTitle>
 
 <AuthorizeView Roles="Teacher">
     <div class="m-2">
-<a href="@($"createCourse")" class="btn btn-outline-primary">Add new course</a>
+        <a href="@($"createCourse")" class="btn btn-primary m-1">Add new course</a>
     </div>
 </AuthorizeView>
 
@@ -31,21 +31,30 @@ else if (courses.Any())
             @foreach (var course in courses)
             {
                 <tr>                    
-                    <td scope="row"><a href="@($"coursedetails/{course?.Id}")">@course?.Name</a></td>                   
+                    <td scope="row">@course?.Name</td>                   
                     <td scope="row">@course?.StartDate.ToString("yyyy-MM-dd")</td>
                     <td scope="row">@course?.LengthDays</td>
                     <td scope="row">@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
                     
                     
+
+                    <AuthorizeView>
+                        <td>
+                            <a href="@($"finalcoursedetails/{course?.Id}")" 
+                            class="btn btn-primary m-1">Details</a>
+                        </td>
+
+                    </AuthorizeView>
+
                     <AuthorizeView Roles="Teacher">
 
                     <td>  
                         <a href="@($"editcourse/{course?.Id}")"
                             class="btn btn-primary m-1">Edit</a>   
                     </td>                    
-                    <td>
+@*                     <td>
                         <button class="btn btn-danger" @onclick="() => Delete()">Delete</button>
-                    </td>
+                    </td> *@
                     </AuthorizeView>
 
 
