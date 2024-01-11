@@ -1,5 +1,17 @@
-﻿<h3>FinalShortcuts</h3>
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-@code {
+<h3>Your Shortcuts</h3>
 
-}
+@attribute [Authorize]
+
+
+<AuthorizeView Roles="Teacher">
+	<a href="authentication/register" class="btn btn-primary m-1">Add User</a>
+	<a href="swagger" target="_blank" class="btn btn-primary m-1">Swagger</a>
+</AuthorizeView>
+
+
+<AuthorizeView Roles="Student">
+	<a href="authentication/register" class="btn btn-primary m-1">My Course</a>
+</AuthorizeView>
