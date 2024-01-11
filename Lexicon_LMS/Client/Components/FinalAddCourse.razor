@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Lexicon_LMS.Shared.Domain
+
+@attribute [Authorize]
+
+<h3>Add a New Course</h3>
+
+<EditForm Model="@newCourse" OnValidSubmit="AddNewCourse">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label for="Name">Name:</label>
+        <InputText id="Name" @bind-Value="newCourse.Name" class="form-control" />
+        <ValidationMessage For="@(() => newCourse.Name)" />
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <InputText id="Description" @bind-Value="newCourse.Description" class="form-control" />
+        <ValidationMessage For="@(() => newCourse.Description)" />
+    </div>
+
+    <div class="form-group">
+        <label for="StartDate">Start Date:</label>
+        <InputDate id="StartDate" @bind-Value="newCourse.StartDate" class="form-control" />
+        <label for="StartDate">@DateTime.Now</label>
+        <ValidationMessage For="@(() => newCourse.StartDate)" />
+    </div>
+
+    <div class="form-group">
+     
+        <InputNumber id="LengthDays" @bind-Value="newCourse.LengthDays" class="form-control" />
+        <ValidationMessage For="@(() => newCourse.LengthDays)" />
+    </div>
+
+    <div class="form-group">
+        <label for="LastApplicationDay">Last Application Day:</label>
+        <InputDate id="LastApplicationDay" @bind-Value="newCourse.LastApplicationDay" class="form-control" />
+        <ValidationMessage For="@(() => newCourse.LastApplicationDay)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Course</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMessage
+    </div>
+}

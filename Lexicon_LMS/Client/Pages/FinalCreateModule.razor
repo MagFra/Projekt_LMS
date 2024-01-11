@@ -1,0 +1,10 @@
+﻿@page "/finalcreatemodule/{CourseId:int}"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<FinalAddModule CourseId="@CourseId" />
+
+@code{
+    [Parameter]
+    public int CourseId { get; set; }
+}

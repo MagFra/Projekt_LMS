@@ -1,4 +1,12 @@
-﻿@if (!string.IsNullOrEmpty(ErrorMessage))
+﻿@* @page "/finaleditmodule/{ModuleId:int}"
+
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Lexicon_LMS.Shared.Domain
+
+<h3>Edit Module</h3>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
 {
     <div class="alert alert-danger" role="alert">
         @ErrorMessage
@@ -27,10 +35,11 @@
     </div>
 
     @* <div class="form-group">
-    <label for="LengthOfDays">Length days:</label>
-    <InputDate id="LengthOfDays" @bind-Value="Module.LengthOfDays" class="form-control" />
-    <ValidationMessage For="@(() => Module.LengthOfDays)" />
+        <label for="LengthOfDays">Length days:</label>
+        <InputDate id="LengthOfDays" @bind-Value="Module.LengthOfDays" class="form-control" />
+        <ValidationMessage For="@(() => Module.LengthOfDays)" />
     </div> *@
 
     <button type="submit" class="btn btn-primary">Save</button>
 </EditForm>
+ *@
