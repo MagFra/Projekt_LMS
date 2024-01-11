@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    
 }
 
 main {
@@ -14,15 +15,67 @@ main {
     /*font-family: 'Raleway', sans-serif;*/
     font-family: 'Exo 2', sans-serif;
     /*font-family: 'Quicksand', sans-serif;*/
+
+    
+
+    .btn-danger
+
+{
+    color: #fff; /* Textfärg */
+    background-color: #772222; /* bakgrundsfärg */
+    border-color: 224422; /* Färg på kantlinjen */
+    border-radius: 30px; /* Rundade hörn med en radie på 30px */
+    font-size: 12px;
+    padding: 3px 10px;
 }
 
+}
+
+
+
 .main-content-wrapper {
-    max-width: 1000px; /* Ange önskad max-bredden för innehållet här */
+    max-width: 1200px; /* Ange önskad max-bredden för innehållet här */
     margin: 0 auto; /* Centrera innehållet horisontellt */
     background-color: rgba(255, 255, 255, 0.5); /* Vit bakgrund med 0.5 opacitet */
     padding: 20px; /* Lägg till valfritt utrymme inuti rutan */
     border-radius: 30px; /* Rundade hörn med en radie på 10px */
+    margin-bottom: 5em; /* För att sidan ska scrolla hela vägen ner */
+
+    
+
+.btn-primary {
+    color: #fff; /* Textfärg */
+    background-color: #224477; /* bakgrundsfärg */
+    border-color: 224477; /* Färg på kantlinjen */
+    border-radius: 30px; /* Rundade hörn med en radie på 30px */
+    font-size: 12px;
+    padding: 3px 10px;
 }
+
+
+
+.btn-danger {
+    color: #fff; /* Textfärg */
+    background-color: #774422; /* bakgrundsfärg */
+    border-color: 774422; /* Färg på kantlinjen */
+    border-radius: 30px; /* Rundade hörn med en radie på 30px */
+    font-size: 12px;
+    padding: 3px 10px;
+}
+
+.btn-lms1 {
+    color: #fff; /* Textfärg */
+    background-color: #224477; /* bakgrundsfärg */
+    border-color: 224477; /* Färg på kantlinjen */
+    border-radius: 30px; /* Rundade hörn med en radie på 30px */
+    font-size: 12px;
+    padding: 3px 10px;
+}
+}
+
+
+
+
 
 .sidebar {
     background-color: #111122;
@@ -44,14 +97,14 @@ main {
         text-decoration: none;
     }
 
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-        text-decoration: underline;
-    }
+        .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+            text-decoration: underline;
+        }
 
-    .top-row ::deep a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        .top-row ::deep a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {
@@ -65,6 +118,15 @@ main {
     .top-row ::deep a, .top-row ::deep .btn-link {
         margin-left: 0;
     }
+}
+
+.btn-danger {
+    color: #fff; /* Textfärg */
+    background-color: #774422; /* bakgrundsfärg */
+    border-color: 774422; /* Färg på kantlinjen */
+    border-radius: 30px; /* Rundade hörn med en radie på 30px */
+    font-size: 12px;
+    padding: 3px 10px;
 }
 
 @media (min-width: 641px) {
@@ -85,11 +147,11 @@ main {
         z-index: 1;
     }
 
-    .top-row.auth ::deep a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
+        .top-row.auth ::deep a:first-child {
+            flex: 1;
+            text-align: right;
+            width: 0;
+        }
 
     .top-row, article {
         padding-left: 2rem !important;
@@ -105,16 +167,18 @@ main {
         bottom: 0;
         color: black;
         text-align: center;
-        left: 150px;                  /*vänstermenyn är 150 bred*/
-        width: calc(100vw - 150px);   /*bredden på footern är sidans bredd minus bredden på vänstermenyn*/
-        
+        left: 150px; /*vänstermenyn är 150 bred*/
+        width: calc(100vw - 150px); /*bredden på footern är sidans bredd minus bredden på vänstermenyn*/
+
         font-size: smaller;
         font-style: oblique;
     }
 
-    .btn-primary {
-        color: #000;
-        background-color: #0d6efd;
-        border-color: #0d6efd
+    .btn-lms1 {
+        color: #fff; /* Textfärg */
+        background-color: #28a745; /* Grön bakgrundsfärg */
+        border-color: #28a745; /* Färg på kantlinjen */
+        border-radius: 10px; /* Rundade hörn med en radie på 10px */
     }
+
 }
