@@ -8,6 +8,15 @@ h1:focus {
     outline: none;
 }
 
+.course-description {
+    width: 100%;
+    background-color: #FFFFFF35 !important;
+    border-radius: 10px !important;
+    padding: 0.6em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
 a, .btn-link {
     color: #0071c1;
 }

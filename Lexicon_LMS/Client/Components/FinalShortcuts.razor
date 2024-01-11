@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<h3>Your Shortcuts</h3>
+<h4>Your Shortcuts</h4>
 
 @attribute [Authorize]
 
@@ -12,6 +12,3 @@
 </AuthorizeView>
 
 
-<AuthorizeView Roles="Student">
-	<a href="authentication/register" class="btn btn-primary m-1">My Course</a>
-</AuthorizeView>

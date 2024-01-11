@@ -5,6 +5,15 @@
     
 }
 
+
+.course-description{
+    color: green !important;
+    border: solid;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
 main {
     flex: 1;
     background-image: linear-gradient(180deg, rgb(75, 119, 123) 0%, #faf6f7 60%);
@@ -180,5 +189,6 @@ main {
         border-color: #28a745; /* Färg på kantlinjen */
         border-radius: 10px; /* Rundade hörn med en radie på 10px */
     }
+
 
 }

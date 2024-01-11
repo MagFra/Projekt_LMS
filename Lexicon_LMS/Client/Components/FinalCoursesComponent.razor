@@ -8,7 +8,7 @@
 
 <AuthorizeView Roles="Teacher">
     <div class="m-2">
-        <a href="@($"createCourse")" class="btn btn-primary m-1">Add new course</a>
+        <a href="@($"finalcreateCourse")" class="btn btn-primary m-1">Add new course</a>
     </div>
 </AuthorizeView>
 
@@ -49,7 +49,7 @@ else if (courses.Any())
                     <AuthorizeView Roles="Teacher">
 
                     <td>  
-                        <a href="@($"editcourse/{course?.Id}")"
+                        <a href="@($"finaleditcourse/{course?.Id}")"
                             class="btn btn-primary m-1">Edit</a>   
                     </td>                    
 @*                     <td>
