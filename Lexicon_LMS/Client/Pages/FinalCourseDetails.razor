@@ -1,0 +1,101 @@
+﻿@page "/finalcoursedetails/{courseId:int}"
+
+@if (course != null)
+{
+    <h6>Course Details</h6>
+    <h3>Course Name: @course.Name</h3>
+
+    <AuthorizeView Roles="Teacher">
+    <a href="@($"editcourse/{courseId}")" class="btn btn-primary m-1">Edit Course</a>
+    <a href="@($"deletecourse/{courseId}")" class="btn btn-danger m-1">Delete Course</a>
+    </AuthorizeView>
+
+    <section class="my-5">
+        <h4>Included Modules:</h4>
+        <AuthorizeView Roles="Teacher">
+            <a href="@($"createmodule/{courseId}")" class="btn btn-primary m-1">Add new module</a>
+        </AuthorizeView>
+   
+        <div>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        @* <th scope="col">ModuleId</th> *@
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">Length (Days)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var module in course.ModuleList)
+                    {
+                        <tr>
+                            @* <td scope="row">@module?.Id</td> *@
+                            <td scope="row">@module?.Name</td>
+                            <td scope="row">@module?.Description</td>
+                            <td scope="row">@module?.StartDate.ToString("yyyy-MM-dd")</td>
+                            @* <td scope="row">@module?.LengthOfDays</td> *@
+                            
+                            <AuthorizeView Roles="Teacher">
+                            <td>
+                                <a href="@($"editmodule/{module?.Id}")"
+                                   class="btn btn-primary m-1">Edit</a>
+                            </td>
+                            </AuthorizeView>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+    </section>
+    <section class="my-5">
+        <h4>Signed up students:</h4>
+        <div>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        @* <th scope="col">StudentId</th> *@
+                        <th scope="col">User Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Student Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in course.StudentList!)
+                    {
+                        <tr>
+                            @* <td scope="row">@student?.Id</td> *@
+                            <td scope="row">@student?.UserName</td>
+                            <td scope="row">@student?.EmailConfirmed</td>
+                            <td scope="row">@(student?.FirstName + " " + student?.LastName)</td>
+                            
+                            <AuthorizeView Roles="Teacher">
+
+                            <td>
+                                <a href="@($"editStudent/{student?.Id}")"
+                                   class="btn btn-primary m-1">Edit</a>
+                            </td>
+                            </AuthorizeView>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <AuthorizeView Roles="Teacher">
+        <a href="@($"createstudent")" class="btn btn-outline-primary">Add new student</a>
+        </AuthorizeView>
+
+        <div class="my-5"></div>
+    </section>
+}
+else
+{
+    <p>Course not found.</p>
+}
+
+<a href="@($"ListOfCourses")" class="btn btn-outline-primary">Back to Course list</a>
