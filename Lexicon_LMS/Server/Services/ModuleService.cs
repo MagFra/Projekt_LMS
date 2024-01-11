@@ -86,14 +86,19 @@ namespace Lexicon_LMS.Server.Services
         }
 
 
-        public async void DeleteModuleAssync(int moduleId)
+        public async Task DeleteModuleAssync(int moduleId)
         {
-            var module = await _db.module.FirstOrDefaultAsync(m => m.Id == moduleId);
+            var module = await _db.module.FindAsync(moduleId);
+
             if (module != null)
             {
                 _db.module.Remove(module);
                 await _db.SaveChangesAsync();
             }
+        }
+        private bool ModuleExists(int id)
+        {
+            return (_db.module?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
