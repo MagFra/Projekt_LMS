@@ -16,6 +16,7 @@ namespace Lexicon_LMS.Shared.Domain.ModulesDTOs
         public DateTime StartDate { get; set; }
         public int LengthOfDays { get; set; }
 
+        public int? CourseId { get; set; } = null!;
         public ICollection<ActivityLimitedDTO>? Activities { get; set; } = null!;
 
         public CourseLimitedDTO? Course { get; set; } = null!;

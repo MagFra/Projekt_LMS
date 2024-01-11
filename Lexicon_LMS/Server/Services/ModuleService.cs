@@ -23,8 +23,7 @@ namespace Lexicon_LMS.Server.Services
         {
             var modules = (corseId is null) ? await _db.module.Include(m => m.Activities).Include(m => m.Course).ToListAsync()
                 : await _db.module.Where(m => m.CourseId == corseId).Include(m => m.Activities).Include(m => m.Course).ToListAsync();
-
-            //<-- Ett försök med lambda, utan mapper.
+                        
             var dto = modules.Select(m => new ModuleDTO
             {
                 Id = m.Id,
@@ -32,17 +31,12 @@ namespace Lexicon_LMS.Server.Services
                 Description = m.Description,
                 StartDate = m.StartDate,
                 LengthOfDays = m.LengthOfDays,
+                CourseId = m.CourseId,
                 Activities = m.Activities!.Select(a => new ActivityLimitedDTO { Id = a.Id, Name = a.Name, StartDate = a.StartDate, LenthDays = a.LenthDays }).ToList(),
                 Course = new CourseLimitedDTO { Id = m.Course!.Id, Name = m.Course.Name, StartDate = m.Course.StartDate, LengthDays = m.Course.LengthDays, }
             }).ToList();
-            // slut på försöket -->
 
-            // <-- En versiom med foreach och mapper. (Osäker på om allt mappas.)
-            //List<ModuleDTO> modulesDTO = new List<ModuleDTO>();
-            //foreach (var module in modules) { modulesDTO.Add(_mapper.Map<ModuleDTO>(module)); }
-            // Slut på versionen. -->
-
-            return dto; //new ModuleListDTO { ListOfModules = modulesDTO};
+            return dto;
         }
 
         public async Task<ModuleDTO> GetModuleAsync(int moduleId)
@@ -63,11 +57,10 @@ namespace Lexicon_LMS.Server.Services
                 Description = module.Description,
                 StartDate = module.StartDate,
                 LengthOfDays = module.LengthOfDays,
+                CourseId = module.CourseId,
                 Activities = module.Activities!.Select(a => new ActivityLimitedDTO { Id = a.Id, Name = a.Name, StartDate = a.StartDate, LenthDays = a.LenthDays}).ToList(),
                 Course = new CourseLimitedDTO { Id = c!.Id, Name = c.Name, StartDate = c.StartDate, LengthDays = c.LengthDays,}
             };
-
-            //var result2 = _mapper.Map<ModuleDTO>(module);
 
             return result;
         }
@@ -87,14 +80,9 @@ namespace Lexicon_LMS.Server.Services
             var module = _mapper.Map<Module>(dto);
 
             _db.Entry(module).State = EntityState.Modified;
-
             
                 await _db.SaveChangesAsync();   // Bör omges av try/catch(Exception)!
-            return true;
-
-            // Bör förses med else{} och varning att modulen som försöker uppdateras inte kan hittas!
-
-            // Bör förses med else{} och varning att inget skickades!            
+            return true;           
         }
 
 
