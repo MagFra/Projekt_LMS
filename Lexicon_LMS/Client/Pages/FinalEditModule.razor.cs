@@ -42,7 +42,7 @@ namespace Lexicon_LMS.Client.Pages
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    NavigationManager!.NavigateTo("/listofcourses"); // Redirect to the course overview after a successful edit
+                    NavigationManager!.NavigateTo("/finalcourses"); // Redirect to the course overview after a successful edit
                 }
                 else
                 {
@@ -53,7 +53,7 @@ namespace Lexicon_LMS.Client.Pages
                 //Module = await response.Content.ReadFromJsonAsync<ModuleForUpdateDTO>();
 
                 // Redirect to ModuleOverview page after successful creation
-                NavigationManager!.NavigateTo($"/coursedetails/{Module.CourseId}");
+                NavigationManager!.NavigateTo($"/finalcoursedetails/{Module.CourseId}");
             }
             catch (Exception ex)
             {
