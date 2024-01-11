@@ -38,18 +38,16 @@ namespace Lexicon_LMS.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Activities>> GetActivities(int id)
         {
-          if (_context.activity == null)
-          {
-              return NotFound();
-          }
-            var activities = await _context.activity.FindAsync(id);
+           var activity = await _context.activity
+                  .Include(a => a.AssignmentsLista)
+                  .FirstOrDefaultAsync(a => a.Id == id);
 
-            if (activities == null)
+            if (activity == null)
             {
                 return NotFound();
             }
 
-            return activities;
+            return activity;
         }
 
         // PUT: api/Activities/5

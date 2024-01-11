@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Lexicon_LMS.Shared.Domain
+
+@attribute [Authorize]
+
+<h3>Assignment Details</h3>
+
+@if (assignments != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Activiry</th>
+                <th>Student</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var assignment in assignments)
+            {
+                <tr>
+                    <td>@assignment.Description</td>
+                    <td>@assignment.Activity</td>
+                    <td>@assignment.Student</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (!string.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <p>Error: @ErrorMessage</p>
+}
+else
+{
+    <p>Loading...</p>
+}
