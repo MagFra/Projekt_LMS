@@ -10,23 +10,23 @@ namespace Lexicon_LMS.Shared.Domain.ModulesDTOs
 {
     public class ModuleForCreationDTO
     {
-        //[Required]
+        [Required]
         public int CourseId { get; set; }
 
 
-        //[Required]
+        [Required]
         public string Name { get; set; } = default!;
 
 
-        //[Required]
+        [Required]
         public string Description { get; set; } = default!;
 
 
-        //[Required]
+        [Required]
         public DateTime StartDate { get; set; }
 
 
-        //[Required, Range(1, 365)]
+        [Required, Range(1, 365)]
         public int LengthOfDays { get; set; }
     }
 }
