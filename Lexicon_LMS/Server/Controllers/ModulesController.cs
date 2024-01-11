@@ -68,8 +68,8 @@ namespace Lexicon_LMS.Server.Controllers
                 return BadRequest();
             }
 
-            var resul = await _moduleService.UpdateModuleAssync(id, @module);
-            return resul ? Ok() : NotFound();
+            var result = await _moduleService.UpdateModuleAsync(id, @module);
+            return result ? Ok() : NotFound();
         }
 
         //POST: api/Modules
