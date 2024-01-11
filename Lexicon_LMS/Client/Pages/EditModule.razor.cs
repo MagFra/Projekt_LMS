@@ -1,4 +1,5 @@
-﻿using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+﻿using Lexicon_LMS.Shared.Domain.CoursesDTOs;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 
@@ -14,24 +15,30 @@ namespace Lexicon_LMS.Client.Pages
 
         private string? ErrorMessage;
 
-        private ModuleDTO Module = new ModuleDTO()!;
+        private ModuleForUpdateDTO Module = new ModuleForUpdateDTO()!;
 
         [Parameter]
         public int ModuleId { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
+            try
+            {
+                // Fetch the existing course details only once when the component initializes
+                Module = await HttpClient.GetFromJsonAsync<ModuleForUpdateDTO>($"/api/Modules/{ModuleId}");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
 
         private async Task UpdateModule()
         {
             try
             {
-                Module.Id = ModuleId;
-
-                // Send a POST request to create the new module
-                using var response = await HttpClient?.PostAsJsonAsync("/api/Modules", Module)!;
+                // Send a PUT request to create the new module
+                using var response = await HttpClient.PutAsJsonAsync($"/api/Modules/{ModuleId}", Module)!;
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -41,11 +48,11 @@ namespace Lexicon_LMS.Client.Pages
                     return;
                 }
 
-                // Convert response data to ModuleDTO object
-                Module = await response.Content.ReadFromJsonAsync<ModuleDTO>();
+                // Convert response data to ModuleForUpdateDTO object
+                //Module = await response.Content.ReadFromJsonAsync<ModuleForUpdateDTO>();
 
                 // Redirect to ModuleOverview page after successful creation
-                NavigationManager!.NavigateTo($"/coursedetails/{Module!.Course!.Id}");
+                NavigationManager!.NavigateTo($"/coursedetails/{Module.CourseId}");
             }
             catch (Exception exception)
             {

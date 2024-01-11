@@ -15,13 +15,11 @@ namespace Lexicon_LMS.Server.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IModuleService _moduleService;
-        private readonly IMapper _mapper;
 
-        public ModulesController(ApplicationDbContext context, IModuleService moduleService, IMapper mapper)
+        public ModulesController(ApplicationDbContext context, IModuleService moduleService)
         {
             _context = context;
             _moduleService = moduleService;
-            _mapper = mapper;
         }
 
         // GET: api/Modules
