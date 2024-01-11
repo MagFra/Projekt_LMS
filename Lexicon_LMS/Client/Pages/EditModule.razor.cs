@@ -1,4 +1,5 @@
-﻿using Lexicon_LMS.Shared.Domain.ModulesDTOs;
+﻿using Lexicon_LMS.Shared.Domain.CoursesDTOs;
+using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 
@@ -14,43 +15,56 @@ namespace Lexicon_LMS.Client.Pages
 
         private string? ErrorMessage;
 
-        private ModuleDTO Module = new ModuleDTO()!;
+        private ModuleForUpdateDTO Module = new ModuleForUpdateDTO()!;
 
         [Parameter]
         public int ModuleId { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
-        }
-
-        private async Task UpdateModule()
-        {
             try
             {
-                Module.Id = ModuleId;
+                var response = await HttpClient!.GetFromJsonAsync<ModuleForUpdateDTO>($"api/modules/{ModuleId}");
 
-                // Send a POST request to create the new module
-                using var response = await HttpClient?.PostAsJsonAsync("/api/Modules", Module)!;
-
-                if (!response.IsSuccessStatusCode)
+                if (response != null)
                 {
-                    // Set error message for display, log to console, and return
-                    ErrorMessage = response.ReasonPhrase;
-                    Console.WriteLine($"There was an error! {ErrorMessage}");
-                    return;
+                    Module = response;
                 }
-
-                // Convert response data to ModuleDTO object
-                Module = await response.Content.ReadFromJsonAsync<ModuleDTO>();
-
-                // Redirect to ModuleOverview page after successful creation
-                NavigationManager!.NavigateTo($"/coursedetails/{Module!.Course!.Id}");
+                else
+                {
+                    ErrorMessage = "Could not read module from API!";
+                }
             }
             catch (Exception exception)
             {
-                ErrorMessage = $"Could not add module! {exception.Message})";
+                ErrorMessage = exception.Message;
+            }
+
+            await base.OnInitializedAsync();
+        }
+
+        private async Task HandleValidSubmit()
+        {
+            try
+            {
+                // Use the existing 'course' object for making updates
+                var success = await HttpClient.PutAsJsonAsync($"/api/modules/{ModuleId}", Module);
+
+                if (success.IsSuccessStatusCode)
+                {
+                    NavigationManager!.NavigateTo("/listofcourses"); // Redirect to the course overview after a successful edit
+                }
+                else
+                {
+                    ErrorMessage = "Failed to update the module!";
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage += ex.Message;
             }
         }
+
+
     }
 }

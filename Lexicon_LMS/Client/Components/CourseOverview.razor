@@ -31,18 +31,17 @@ else if (courses.Any())
             @foreach (var course in courses)
             {
                 <tr>
-                    <td scope="row">@course?.Id</td>
-                    <td scope="row"><a href="@($"coursedetails/{course?.Id}")">@course?.Name</a></td>
-                    <td scope="row">@course?.Description</td>
-                    <td scope="row">@course?.StartDate.ToString("yyyy-MM-dd")</td>
-                    <td scope="row">@course?.LengthDays</td>
-                    <td scope="row">@course?.LastApplicationDay.ToString("yyyy-MM-dd")</td>
+                    <td scope="row">@course.Id</td>
+                    <td scope="row"><a href="@($"coursedetails/{course.Id}")">@course.Name</a></td>
+                    <td scope="row">@course.Description</td>
+                    <td scope="row">@course.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td scope="row">@course.LengthDays</td>
+                    <td scope="row">@course.LastApplicationDay.ToString("yyyy-MM-dd")</td>
                     <td>  
-                        <a href="@($"editcourse/{course?.Id}")"
-                            class="btn btn-primary m-1">Edit</a>   
+                        <a href="@($"editcourse/{course.Id}")" class="btn btn-primary m-1">Edit</a>   
                     </td>
                     <td>
-                         <button class="btn btn-danger" @onclick="() => Delete(course?.Id)">Delete</button>
+                         <button class="btn btn-danger" @onclick="() => Delete(course.Id)">Delete</button>
                     </td>
                 </tr>
             }

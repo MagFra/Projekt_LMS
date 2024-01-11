@@ -7,14 +7,14 @@ namespace Lexicon_LMS.Client.Components;
 public partial class UpdateCourse
 {
     [Inject]
-    public HttpClient? HttpClient { get; set; }
+    public HttpClient HttpClient { get; set; }
     [Inject]
     private NavigationManager? NavigationManager { get; set; }
 
     [Parameter]
     public int CourseId { get; set; }
 
-    private CourseDTO? Course { get; set; } = new CourseDTO();
+    private CourseUpdateDTO Course { get; set; } = new CourseUpdateDTO();
     private string ErrorMessage = string.Empty;
 
     protected override async Task OnInitializedAsync()
@@ -22,7 +22,7 @@ public partial class UpdateCourse
         try
         {
             // Fetch the existing course details only once when the component initializes
-            Course = await HttpClient!.GetFromJsonAsync<CourseDTO>($"/api/courses/{CourseId}");
+            Course = await HttpClient.GetFromJsonAsync<CourseUpdateDTO>($"/api/courses/{CourseId}");
         }
         catch (Exception ex)
         {
@@ -35,7 +35,7 @@ public partial class UpdateCourse
         try
         {
             // Use the existing 'course' object for making updates
-            var success = await HttpClient!.PutAsJsonAsync($"/api/courses/{CourseId}", Course);
+            var success = await HttpClient.PutAsJsonAsync($"/api/courses/{CourseId}", Course);
             
             if (success.IsSuccessStatusCode)
             {
