@@ -24,33 +24,23 @@ namespace Lexicon_LMS.Client.Pages
         {
             try
             {
-                var response = await HttpClient!.GetFromJsonAsync<ModuleForUpdateDTO>($"api/modules/{ModuleId}");
-
-                if (response != null)
-                {
-                    Module = response;
-                }
-                else
-                {
-                    ErrorMessage = "Could not read module from API!";
-                }
+                // Fetch the existing course details only once when the component initializes
+                Module = await HttpClient.GetFromJsonAsync<ModuleForUpdateDTO>($"/api/Modules/{ModuleId}");
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                ErrorMessage = exception.Message;
+                ErrorMessage = ex.Message;
             }
-
-            await base.OnInitializedAsync();
         }
 
         private async Task HandleValidSubmit()
         {
             try
             {
-                // Use the existing 'course' object for making updates
-                var success = await HttpClient.PutAsJsonAsync($"/api/modules/{ModuleId}", Module);
+                // Send a PUT request to create the new module
+                using var response = await HttpClient.PutAsJsonAsync($"/api/Modules/{ModuleId}", Module)!;
 
-                if (success.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
                     NavigationManager!.NavigateTo("/listofcourses"); // Redirect to the course overview after a successful edit
                 }
@@ -58,6 +48,12 @@ namespace Lexicon_LMS.Client.Pages
                 {
                     ErrorMessage = "Failed to update the module!";
                 }
+
+                // Convert response data to ModuleForUpdateDTO object
+                //Module = await response.Content.ReadFromJsonAsync<ModuleForUpdateDTO>();
+
+                // Redirect to ModuleOverview page after successful creation
+                NavigationManager!.NavigateTo($"/coursedetails/{Module.CourseId}");
             }
             catch (Exception ex)
             {
