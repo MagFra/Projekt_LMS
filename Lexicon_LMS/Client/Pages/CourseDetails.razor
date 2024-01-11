@@ -4,12 +4,15 @@
 
 @if (course != null)
 {
+    <br>
     <h4>@course.Name</h4>
-    <a href="@($"editcourse/{courseId}")" class="btn btn-primary m-1">Edit</a>
-    <a href="@($"deletecourse/{courseId}")" class="btn btn-primary m-1">Delete</a>
+    <br>
+@*     <a href="@($"editcourse/{courseId}")" class="btn btn-primary m-1">Edit</a>
+    <a href="@($"deletecourse/{courseId}")" class="btn btn-primary m-1">Delete</a> *@ @* Gamla *@
     <section>
         <h5><strong>Modules:</strong></h5>
-   
+        <br>
+        <a href="@($"createmodule/{courseId}")" class="btn btn-primary m-1">Add new module</a>
         <div>
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -39,10 +42,13 @@
                 </tbody>
             </table>
         </div>
-        <a href="@($"createmodule/{courseId}")" class="btn btn-primary m-1">Add new module</a>
+@*         <a href="@($"createmodule/{courseId}")" class="btn btn-primary m-1">Add new module</a> *@ @* Gammal *@
     </section>
     <section>
-        <h5>Students:</h5>
+        <br>
+        <h5><strong>Students:</strong></h5>
+        <br>
+        <a href="@($"createstudent")" class="btn btn-primary m-1">Add new student</a>
         <div>
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -70,7 +76,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="@($"createstudent")" class="btn btn-outline-primary">Add new student</a>
+@*         <a href="@($"createstudent")" class="btn btn-primary m-1">Add new student</a> *@
     </section>
 }
 else
