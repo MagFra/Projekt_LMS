@@ -30,7 +30,7 @@ else if (modules.Any())
             @foreach (var module in modules)
             {
                 <tr>
-                    <td scope="row">@module?.CourseId</td>
+                    <td scope="row">@module?.Course!.Id</td>
                     <td scope="row"><a href="@($"moduledetails/{module?.Id}")">@module?.Name</a></td>
                     <td scope="row">@module?.Description</td>
                     <td scope="row">@module?.StartDate.ToString("yyyy-MM-dd")</td>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Lexicon_LMS.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Update : Migration
+    public partial class Initfreshrestart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

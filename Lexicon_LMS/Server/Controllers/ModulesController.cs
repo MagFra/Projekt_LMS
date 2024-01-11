@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Models.Entities;
 using Lexicon_LMS.Server.Services;
-using Lexicon_LMS.Server.Models.Profiles;
-using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Lexicon_LMS.Shared.Domain.ModulesDTOs;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Lexicon_LMS.Server.Controllers
 {
@@ -41,19 +33,7 @@ namespace Lexicon_LMS.Server.Controllers
                 return NotFound();
             }
 
-            //var result = await _context.module.Select(m => new ModuleDTO
-            //{
-            //    Id = m.Id,
-            //    CourseId = m.CourseId,
-            //    Name = m.Name!,
-            //    Description = m.Description!,
-            //    StartDate = m.StartDate,
-            //    LengthOfDays = m.LengthOfDays
-            //}).ToListAsync();
-
-            //var result = await _moduleService.GetModuleListAsync();
-
-            var result = await _context.module.ToListAsync();
+            var result = await _moduleService.GetModuleListAsync();
 
             return Ok(result);
         }
@@ -62,15 +42,14 @@ namespace Lexicon_LMS.Server.Controllers
 
         // GET: api/Modules/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Module>> GetModule(int id)
+        public async Task<ActionResult<ModuleDTO>> GetModule(int id)
         {
           if (_context.module == null)
           {
               return NotFound();
           }
-            var @module = await _context.module.FindAsync(id);
 
-            //var @module = await _moduleService.GetModuleAsync(id);
+            var @module = await _moduleService.GetModuleAsync(id);
 
             if (@module == null)
             {
@@ -93,27 +72,6 @@ namespace Lexicon_LMS.Server.Controllers
 
             var resul = await _moduleService.UpdateModuleAssync(id, @module);
             return resul ? Ok() : NotFound();
-            //var result = _mapper.Map<Module>(@module);
-
-            //_context.Entry(result).State = EntityState.Modified;
-
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!ModuleExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
-            //return NoContent();
         }
 
         //POST: api/Modules

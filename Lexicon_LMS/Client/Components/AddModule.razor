@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Lexicon_LMS.Shared.Domain
 
-@attribute [Authorize(Roles ="Teacher")]
+@attribute [Authorize]
 
 <h3>Add a New Module</h3>
 
@@ -37,3 +37,9 @@
     <button type="submit" class="btn btn-primary">Add module</button>
 </EditForm>
 
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMessage
+    </div>
+}
