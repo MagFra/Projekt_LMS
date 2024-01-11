@@ -1,44 +1,10 @@
 ﻿@page "/finaleditmodule/{ModuleId:int}"
 
+@inherits FinalUpdateModule
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Lexicon_LMS.Shared.Domain
 
 <h3>Edit Module</h3>
 
-@if (!string.IsNullOrEmpty(ErrorMessage))
-{
-    <div class="alert alert-danger" role="alert">
-        @ErrorMessage
-    </div>
-}
-
-<EditForm Model="@Module" OnValidSubmit="HandleValidSubmit">
-    <DataAnnotationsValidator />
-
-    <div class="form-group">
-        <label for="Name">Name:</label>
-        <InputText id="Name" @bind-Value="Module.Name" class="form-control" />
-        <ValidationMessage For="@(() => Module.Name)" />
-    </div>
-
-    <div class="form-group">
-        <label for="Description">Description:</label>
-        <InputText id="Description" @bind-Value="Module.Description" class="form-control" />
-        <ValidationMessage For="@(() => Module.Description)" />
-    </div>
-
-    <div class="form-group">
-        <label for="StartDate">Start Date:</label>
-        <InputDate id="StartDate" @bind-Value="Module.StartDate" class="form-control" />
-        <ValidationMessage For="@(() => Module.StartDate)" />
-    </div>
-
-    @* <div class="form-group">
-        <label for="LengthOfDays">Length days:</label>
-        <InputDate id="LengthOfDays" @bind-Value="Module.LengthOfDays" class="form-control" />
-        <ValidationMessage For="@(() => Module.LengthOfDays)" />
-    </div> *@
-
-    <button type="submit" class="btn btn-primary">Save</button>
-</EditForm>
+<FinalUpdateModule ModuleId="ModuleId" />
