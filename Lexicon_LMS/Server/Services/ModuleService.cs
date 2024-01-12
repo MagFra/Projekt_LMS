@@ -73,7 +73,7 @@ namespace Lexicon_LMS.Server.Services
             return _mapper.Map<ModuleDTO>(module);
         }
 
-        public async Task<bool> UpdateModuleAssync(int id, ModuleForUpdateDTO dto)
+        public async Task<bool> UpdateModuleAsync(int id, ModuleForUpdateDTO dto)
         {
             // Testa att dto innehåller "valid" data!
 
@@ -86,7 +86,7 @@ namespace Lexicon_LMS.Server.Services
         }
 
 
-        public async void DeleteModuleAssync(int moduleId)
+        public async void DeleteModuleAsync(int moduleId)
         {
             var module = await _db.module.FirstOrDefaultAsync(m => m.Id == moduleId);
             if (module != null)
