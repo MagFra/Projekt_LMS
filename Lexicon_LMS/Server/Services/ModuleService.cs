@@ -23,7 +23,7 @@ namespace Lexicon_LMS.Server.Services
         {
             var modules = (corseId is null) ? await _db.module.Include(m => m.Activities).Include(m => m.Course).ToListAsync()
                 : await _db.module.Where(m => m.CourseId == corseId).Include(m => m.Activities).Include(m => m.Course).ToListAsync();
-                        
+
             var dto = modules.Select(m => new ModuleDTO
             {
                 Id = m.Id,
@@ -58,8 +58,8 @@ namespace Lexicon_LMS.Server.Services
                 StartDate = module.StartDate,
                 LengthOfDays = module.LengthOfDays,
                 CourseId = module.CourseId,
-                Activities = module.Activities!.Select(a => new ActivityLimitedDTO { Id = a.Id, Name = a.Name, StartDate = a.StartDate, LenthDays = a.LenthDays}).ToList(),
-                Course = new CourseLimitedDTO { Id = c!.Id, Name = c.Name, StartDate = c.StartDate, LengthDays = c.LengthDays,}
+                Activities = module.Activities!.Select(a => new ActivityLimitedDTO { Id = a.Id, Name = a.Name, StartDate = a.StartDate, LenthDays = a.LenthDays }).ToList(),
+                Course = new CourseLimitedDTO { Id = c!.Id, Name = c.Name, StartDate = c.StartDate, LengthDays = c.LengthDays, }
             };
 
             return result;
@@ -75,26 +75,43 @@ namespace Lexicon_LMS.Server.Services
 
         public async Task<bool> UpdateModuleAssync(int id, ModuleForUpdateDTO dto)
         {
-            // Testa att dto innehåller "valid" data!
-
-            var module = _mapper.Map<Module>(dto);
-
-            _db.Entry(module).State = EntityState.Modified;
-            
-                await _db.SaveChangesAsync();   // Bör omges av try/catch(Exception)!
-            return true;           
+            if (dto != null && id == dto.Id)
+            {
+                // Testa att dto innehåller "valid" data!
+                var module = _mapper.Map<Module>(dto);
+                try
+                {
+                    _db.Entry(module).State = EntityState.Modified;
+                    await _db.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
 
 
-        public async Task DeleteModuleAssync(int moduleId)
+        public async Task<bool> DeleteModuleAssync(int moduleId)
         {
             var module = await _db.module.FindAsync(moduleId);
 
             if (module != null)
             {
-                _db.module.Remove(module);
-                await _db.SaveChangesAsync();
+                try
+                {
+                    _db.module.Remove(module);
+                    await _db.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return true;
             }
+            return false;
         }
         private bool ModuleExists(int id)
         {
