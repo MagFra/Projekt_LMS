@@ -19,10 +19,12 @@ namespace Lexicon_LMS.Server.Services
             _db = dbContext;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ModuleDTO>> GetModuleListAsync(int? corseId = null)
+        public async Task<IEnumerable<ModuleDTO>?> GetModuleListAsync(int? corseId = null)
         {
             var modules = (corseId is null) ? await _db.module.Include(m => m.Activities).Include(m => m.Course).ToListAsync()
                 : await _db.module.Where(m => m.CourseId == corseId).Include(m => m.Activities).Include(m => m.Course).ToListAsync();
+
+            if (modules == null || modules.Count == 0) { return null; }
 
             var dto = modules.Select(m => new ModuleDTO
             {
@@ -39,7 +41,7 @@ namespace Lexicon_LMS.Server.Services
             return dto;
         }
 
-        public async Task<ModuleDTO> GetModuleAsync(int moduleId)
+        public async Task<ModuleDTO?> GetModuleAsync(int moduleId)
         {
             var module = await _db.module
                 .Where(m => m.Id == moduleId)
@@ -47,7 +49,7 @@ namespace Lexicon_LMS.Server.Services
                 .Include(m => m.Course)
                 .FirstOrDefaultAsync();
 
-            if (module == null) { return new ModuleDTO(); }
+            if (module == null) { return null; }
 
             var c = module.Course;
             var result = new ModuleDTO
