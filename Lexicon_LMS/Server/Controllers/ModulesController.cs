@@ -28,7 +28,7 @@ namespace Lexicon_LMS.Server.Controllers
         {
             if (_context.module == null)
             {
-                return NotFound();
+                return NotFound("No modules in database!");
             }
 
             var result = await _moduleService.GetModuleListAsync();
@@ -44,14 +44,14 @@ namespace Lexicon_LMS.Server.Controllers
         {
           if (_context.module == null)
           {
-              return NotFound();
+              return NotFound("No modules in database!");
           }
 
             var @module = await _moduleService.GetModuleAsync(id);
 
             if (@module == null)
             {
-                return NotFound();
+                return NotFound($"Could not find module with ID={id}!");
             }
             
             return Ok(@module);
@@ -65,11 +65,11 @@ namespace Lexicon_LMS.Server.Controllers
         {
             if (id != @module.Id)
             {
-                return BadRequest();
+                return BadRequest("IDs don't match!");
             }
 
             var resul = await _moduleService.UpdateModuleAssync(id, @module);
-            return resul ? Ok() : NotFound();
+            return resul ? Ok("Update ok!") : NotFound("Could not update!");
         }
 
         //POST: api/Modules
@@ -111,20 +111,7 @@ namespace Lexicon_LMS.Server.Controllers
 		[Authorize(Roles = "Teacher")]
 		public async Task<IActionResult> DeleteModule(int id)
         {
-            if (_context.module == null)
-            {
-                return NotFound();
-            }
-            var @module = await _context.module.FindAsync(id);
-            if (@module == null)
-            {
-                return NotFound();
-            }
-
-            _context.module.Remove(@module);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return (await _moduleService.DeleteModuleAssync(id)) ? Ok("Delete ok!") : NotFound("Could not delete!");
         }
 
         private bool ModuleExists(int id)
