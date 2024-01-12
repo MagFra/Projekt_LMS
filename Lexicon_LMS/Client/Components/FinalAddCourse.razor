@@ -24,7 +24,6 @@
     <div class="form-group">
         <label for="StartDate">Start Date:</label>
         <InputDate id="StartDate" @bind-Value="newCourse.StartDate" class="form-control" />
-        <label for="StartDate">@DateTime.Now</label>
         <ValidationMessage For="@(() => newCourse.StartDate)" />
     </div>
 
