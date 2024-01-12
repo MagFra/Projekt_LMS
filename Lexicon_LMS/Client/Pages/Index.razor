@@ -16,9 +16,24 @@
     <NotAuthorized>
         <h1>Välkommen till Lexicon LMS</h1>
         <div>För att använda denna sida behöver du logga in.</div>
-        @* <SurveyPrompt Title="" /> *@
-        <button class="btn btn-outline-light m-2">
+        <div class="my-5">
+            <p>Eftersom endast lärare ska få skapa användare går det inte att registrera nya härifrån.
+            Vi har istället skapat seed-data med användare.</p>
+        </div>
+        <div class ="my-5">
+            <p>För att logga in som lärare använd:<br />
+            <b>Namn: teach1@lex.se</b><br />
+            <b>Lösen: %T0lss1t5</b></p>
+        </div>
+        <div class ="my-5">
+            <p>För att logga in som elev använd:<br />
+            <b>Namn: student1@home.se</b><br />
+            <b>Lösen: %T0lss1t5</b></p>
+            </div>
+        
+        <button class="btn btn-outline-primary m-2">
         <a href="authentication/login">Log in</a>
+        
         </button>
     </NotAuthorized>
 </AuthorizeView>
