@@ -67,6 +67,7 @@ namespace Lexicon_LMS.Server.Services
             return result;
         }
 
+        // POST
         public async Task<ModuleDTO> AddModuleAsync(ModuleForCreationDTO dto)
         {
             var module = _mapper.Map<Module>(dto);
@@ -75,6 +76,7 @@ namespace Lexicon_LMS.Server.Services
             return _mapper.Map<ModuleDTO>(module);
         }
 
+        // PUT
         public async Task<bool> UpdateModuleAssync(int id, ModuleForUpdateDTO dto)
         {
             if (dto != null && id == dto.Id)
