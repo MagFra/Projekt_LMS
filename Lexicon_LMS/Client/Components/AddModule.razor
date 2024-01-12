@@ -34,6 +34,12 @@
         <ValidationMessage For="@(() => newModule.StartDate)" />
     </div>
 
+    <div class="form-group">
+        <label for="LengthOfDays">Length Days:</label>
+        <InputNumber id="LengthOfDays" @bind-Value="newModule.LengthOfDays" class="form-control" />
+        <ValidationMessage For="@(() => newModule.LengthOfDays)" />
+    </div>
+
     <button type="submit" class="btn btn-primary">Add module</button>
 </EditForm>
 
