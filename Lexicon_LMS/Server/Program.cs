@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Lexicon_LMS.Server.Data;
 using Lexicon_LMS.Server.Extensions;
-using Lexicon_LMS.Shared.Domain.ModulesDTOs;
 using Lexicon_LMS.Server.Models.Entities;
 using Lexicon_LMS.Server.Models.Profiles;
 using Lexicon_LMS.Server.Services;
@@ -50,7 +47,7 @@ builder.Services.AddAutoMapper(typeof(CoursesMapperProfile));
 builder.Services.AddAutoMapper(typeof(ModulesMapperProfile));
 builder.Services.AddAutoMapper(typeof(UsersMapperProfile));
 
-builder.Services.AddScoped<Lexicon_LMS.Server.Services.IModuleService, Lexicon_LMS.Server.Services.ModuleService>();
+builder.Services.AddScoped<IModuleService, ModuleService>();
 
 //builder.Services.AddAuthentication()
 //    .AddIdentityServerJwt();
