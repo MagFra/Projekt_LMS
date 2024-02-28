@@ -340,7 +340,7 @@ namespace Lexicon_LMS.Server.Data
 		{
 			foreach (var type in types)
 			{
-				await db.ActivityType.AddAsync(new ActivityType { Type = type });
+				await db.activityType.AddAsync(new ActivityType { Type = type });
 			}
 			await db.SaveChangesAsync();
 		}

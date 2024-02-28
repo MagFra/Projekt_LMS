@@ -27,22 +27,22 @@ namespace Lexicon_LMS.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ActivityType>>> GetActivityType()
         {
-          if (_context.ActivityType == null)
+          if (_context.activityType == null)
           {
               return NotFound();
           }
-            return await _context.ActivityType.ToListAsync();
+            return await _context.activityType.ToListAsync();
         }
 
         // GET: api/ActivityTypes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ActivityType>> GetActivityType(int id)
         {
-          if (_context.ActivityType == null)
+          if (_context.activityType == null)
           {
               return NotFound();
           }
-            var activityType = await _context.ActivityType.FindAsync(id);
+            var activityType = await _context.activityType.FindAsync(id);
 
             if (activityType == null)
             {
@@ -90,11 +90,11 @@ namespace Lexicon_LMS.Server.Controllers
 		[Authorize(Roles = "Teacher")]
 		public async Task<ActionResult<ActivityType>> PostActivityType(ActivityType activityType)
         {
-          if (_context.ActivityType == null)
+          if (_context.activityType == null)
           {
               return Problem("Entity set 'ApplicationDbContext.ActivityType'  is null.");
           }
-            _context.ActivityType.Add(activityType);
+            _context.activityType.Add(activityType);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetActivityType", new { id = activityType.Id }, activityType);
@@ -105,17 +105,17 @@ namespace Lexicon_LMS.Server.Controllers
 		[Authorize(Roles = "Teacher")]
 		public async Task<IActionResult> DeleteActivityType(int id)
         {
-            if (_context.ActivityType == null)
+            if (_context.activityType == null)
             {
                 return NotFound();
             }
-            var activityType = await _context.ActivityType.FindAsync(id);
+            var activityType = await _context.activityType.FindAsync(id);
             if (activityType == null)
             {
                 return NotFound();
             }
 
-            _context.ActivityType.Remove(activityType);
+            _context.activityType.Remove(activityType);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -123,7 +123,7 @@ namespace Lexicon_LMS.Server.Controllers
 
         private bool ActivityTypeExists(int id)
         {
-            return (_context.ActivityType?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.activityType?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,11 +1,8 @@
 ﻿using Duende.IdentityServer.EntityFramework.Options;
-using Humanizer;
 using Lexicon_LMS.Server.Models.Entities;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using System.Diagnostics;
-using System.Reflection.Emit;
 
 namespace Lexicon_LMS.Server.Data
 {
@@ -16,6 +13,7 @@ namespace Lexicon_LMS.Server.Data
         public DbSet<Assignments> assignments => Set<Assignments>();
         public DbSet<Courses> courses => Set<Courses>();
         public DbSet<Module> module => Set<Module>();
+        public DbSet<ActivityType> activityType => Set<ActivityType>();
 
         public ApplicationDbContext(
             DbContextOptions options,
@@ -37,7 +35,6 @@ namespace Lexicon_LMS.Server.Data
 
         }
 
-        public DbSet<Lexicon_LMS.Server.Models.Entities.ActivityType> ActivityType { get; set; } = default!;
 
     }
 }
